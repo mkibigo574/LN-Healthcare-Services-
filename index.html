@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  LN HEALTH CARE SERVICES — Production Single-File Website
+  ============================================================
+
+  EMAIL DELIVERY SETUP (IMPORTANT):
+  --------------------------------------------------------------
+  Both forms (Referral + Job Application) currently use a
+  `mailto:` fallback so they work out of the box. For reliable
+  production delivery, replace the form `action` attribute with
+  your Formspree endpoint:
+
+      action="https://formspree.io/f/YOUR_FORM_ID"
+
+  Steps:
+    1. Sign up at https://formspree.io
+    2. Create two forms (one for referrals, one for applications)
+    3. Replace the placeholder action URLs in:
+         - <form id="referralForm"  ...> (Section 12)
+         - <form id="applicationForm" ...> (Section 13)
+    4. Forms will email submissions to:
+         admin@lnhealthcareservices.com.au
+
+  EmailJS alternative: replace submitReferral() / submitApplication()
+  fetch() blocks with emailjs.send(...) calls.
+  ============================================================
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#1a3c2e" />
+<title>LN Health Care Services | NDIS Registered Disability Provider — Darwin NT & Perth WA</title>
+<meta name="description" content="LN Health Care Services is an NDIS registered disability provider delivering person-centred supports across Darwin NT and Perth WA. Refer a participant or apply to join our team." />
+<meta name="keywords" content="NDIS, disability services, Darwin, Perth, support worker, SIL, support coordination, NDIS registered provider, Australia" />
+<meta name="author" content="LN Health Care Services" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="LN Health Care Services — Care That Connects. Lives That Flourish." />
+<meta property="og:description" content="NDIS Registered Disability Provider in Darwin NT and Perth WA. Person-centred care, support coordination, SIL, community participation." />
+<meta property="og:url" content="https://www.lnhealthcareservices.com.au" />
+<meta property="og:site_name" content="LN Health Care Services" />
+<meta property="og:image" content="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=1200" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="LN Health Care Services" />
+<meta name="twitter:description" content="NDIS Registered Disability Provider — Darwin NT & Perth WA" />
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<!-- Structured Data — LocalBusiness -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "LN Health Care Services",
+  "description": "NDIS registered disability service provider in Darwin NT and Perth WA, Australia.",
+  "url": "https://www.lnhealthcareservices.com.au",
+  "email": "admin@lnhealthcareservices.com.au",
+  "telephone": ["+610400000001", "+610400000002"],
+  "address": [
+    {"@type": "PostalAddress", "addressLocality": "Darwin", "addressRegion": "NT", "addressCountry": "AU"},
+    {"@type": "PostalAddress", "addressLocality": "Perth",  "addressRegion": "WA", "addressCountry": "AU"}
+  ],
+  "serviceType": "NDIS Disability Support Services",
+  "areaServed": ["Northern Territory", "Western Australia"],
+  "sameAs": []
+}
+</script>
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ============================================================
+     SVG ICON SPRITE — referenced via <svg class="ic"><use href="#id"/></svg>
+============================================================ -->
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="ic-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="ic-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
+    <symbol id="ic-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+    <symbol id="ic-flag" viewBox="0 0 24 24"><path d="M4 22V4a1 1 0 0 1 1-1h13l-3 5 3 5H5"/><line x1="4" y1="22" x2="4" y2="15"/></symbol>
+    <symbol id="ic-shield" viewBox="0 0 24 24"><path d="M12 2 4 6v6c0 5 3.5 9.5 8 10 4.5-.5 8-5 8-10V6l-8-4z"/></symbol>
+    <symbol id="ic-shield-check" viewBox="0 0 24 24"><path d="M12 2 4 6v6c0 5 3.5 9.5 8 10 4.5-.5 8-5 8-10V6l-8-4z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="ic-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="ic-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></symbol>
+    <symbol id="ic-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="ic-x-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></symbol>
+    <symbol id="ic-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="ic-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></symbol>
+    <symbol id="ic-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+    <symbol id="ic-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="ic-zap" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
+    <symbol id="ic-star" viewBox="0 0 24 24" stroke="none" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></symbol>
+    <symbol id="ic-heart" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></symbol>
+    <symbol id="ic-handshake" viewBox="0 0 24 24"><path d="M11 17 8.5 19.5a2.12 2.12 0 0 1-3-3L9 13M14 8l3-3 4 4-3 3M3 12l5-5 4 4-3 3-2 2"/><path d="m17 13 2 2M14 16l2 2"/></symbol>
+    <symbol id="ic-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="ic-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+    <symbol id="ic-user-care" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 21v-2a6 6 0 0 1 12 0v2M9 13h.01M15 13h.01"/></symbol>
+    <symbol id="ic-car" viewBox="0 0 24 24"><path d="M5 17H3v-6l2-5h14l2 5v6h-2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></symbol>
+    <symbol id="ic-home" viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></symbol>
+    <symbol id="ic-house-heart" viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M12 17.5 9.5 15a1.7 1.7 0 1 1 2.5-2.3 1.7 1.7 0 1 1 2.5 2.3z"/></symbol>
+    <symbol id="ic-sparkles" viewBox="0 0 24 24"><path d="m12 3 1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5z"/><path d="M19 13v4M21 15h-4M5 5v3M6.5 6.5h-3"/></symbol>
+    <symbol id="ic-globe-2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2c-3 4-3 16 0 20M12 2c3 4 3 16 0 20M2 12h20"/></symbol>
+    <symbol id="ic-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+    <symbol id="ic-clipboard" viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 12h6M9 16h4"/></symbol>
+    <symbol id="ic-clipboard-check" viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></symbol>
+    <symbol id="ic-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+    <symbol id="ic-trending-up" viewBox="0 0 24 24"><path d="m22 7-9 9-5-5L2 17"/><path d="M16 7h6v6"/></symbol>
+    <symbol id="ic-medal" viewBox="0 0 24 24"><path d="M7.5 4 9 9.5 12 7l3 2.5L16.5 4"/><circle cx="12" cy="15" r="6"/><path d="M12 12v6M9.5 14.5h5"/></symbol>
+    <symbol id="ic-bolt" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
+    <symbol id="ic-message" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+    <symbol id="ic-contrast" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2v20" fill="currentColor"/><path d="M12 2a10 10 0 0 0 0 20z" fill="currentColor"/></symbol>
+    <symbol id="ic-text" viewBox="0 0 24 24"><path d="M4 7V5h16v2M9 19h6M12 5v14"/></symbol>
+    <symbol id="ic-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 4 13c0-5 4-9 11-12 1 7 0 11-3 14a7 7 0 0 1-1 5z"/><path d="M2 22c2-3 4-7 9-9"/></symbol>
+    <symbol id="ic-flower" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 9V5a3 3 0 1 1 3 3M12 15v4a3 3 0 1 1-3-3M9 12H5a3 3 0 1 1 3-3M15 12h4a3 3 0 1 1-3 3"/></symbol>
+    <symbol id="ic-ear" viewBox="0 0 24 24"><path d="M6 8.5a6.5 6.5 0 1 1 13 0c0 6-6 6-6 10a3.5 3.5 0 1 1-7 0"/><path d="M11 8a2.5 2.5 0 1 1 4.5 1.5l-3 3"/></symbol>
+    <symbol id="ic-inclusion" viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="7" r="3"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2M14 15h3a4 4 0 0 1 4 4v2"/></symbol>
+    <symbol id="ic-briefcase" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
+    <symbol id="ic-dollar" viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></symbol>
+    <symbol id="ic-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+    <symbol id="ic-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></symbol>
+    <symbol id="ic-rocket" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.5-2 5-2 5s3.5-.5 5-2c.83-.83.83-2.17 0-3-.83-.83-2.17-.83-3 0z"/><path d="M12 15c-1-1-1-3 0-4l4-4 5 5-4 4c-1 1-3 1-4 0z"/><path d="M9 12 7 14M15 9l-6 6M14 9l1-1c2-2 5-2 7 0M15 14l-1 1c-2 2-2 5 0 7"/></symbol>
+    <symbol id="ic-medical" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></symbol>
+    <symbol id="ic-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol>
+    <symbol id="ic-party" viewBox="0 0 24 24"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01M22 8h.01M15 2h.01M22 20h.01"/><path d="M22 2 11 13M11 13l3-3 4 4-3 3-4-4z"/></symbol>
+    <symbol id="ic-alert" viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4M12 17h.01"/></symbol>
+    <symbol id="ic-lightbulb" viewBox="0 0 24 24"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c1 .8 1.5 1.7 1.5 2.8h5c0-1.1.5-2 1.5-2.8A7 7 0 0 0 12 2z"/></symbol>
+    <symbol id="ic-sparkle" viewBox="0 0 24 24"><path d="m12 3 2 6 6 2-6 2-2 6-2-6-6-2 6-2 2-6z"/></symbol>
+    <symbol id="ic-quote" viewBox="0 0 24 24" stroke="none" fill="currentColor"><path d="M3 21V13.5C3 8.25 6.5 4.75 11 3v3.75c-2.5 1-3.75 3-3.75 5.25H11V21H3zm10 0V13.5C13 8.25 16.5 4.75 21 3v3.75c-2.5 1-3.75 3-3.75 5.25H21V21h-8z"/></symbol>
+    <symbol id="ic-flag-aboriginal" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="1" fill="#000" stroke="none"/><rect x="2" y="12" width="20" height="8" fill="#c8102e" stroke="none"/><circle cx="12" cy="12" r="3" fill="#ffb300" stroke="none"/></symbol>
+    <symbol id="ic-flag-au" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="1" fill="#012169" stroke="none"/><path d="M2 4h10v8H2z" fill="#012169" stroke="#fff" stroke-width=".5"/><path d="M2 4l10 8M12 4l-10 8" stroke="#fff" stroke-width="1.2"/><path d="M7 4v8M2 8h10" stroke="#fff" stroke-width="1.4"/><path d="M7 4v8M2 8h10" stroke="#c8102e" stroke-width=".7"/></symbol>
+    <symbol id="ic-flag-torres" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="1" fill="#0d8a4e" stroke="none"/><rect x="2" y="9" width="20" height="6" fill="#000" stroke="none"/><rect x="2" y="10" width="20" height="4" fill="#fff" stroke="none"/><circle cx="12" cy="12" r="2.4" fill="none" stroke="#fff" stroke-width="1.2"/><circle cx="12" cy="12" r="1" fill="#fff" stroke="none"/></symbol>
+    <symbol id="ic-facebook" viewBox="0 0 24 24" stroke="none" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.6V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></symbol>
+    <symbol id="ic-linkedin" viewBox="0 0 24 24" stroke="none" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2zM8 19H5V9.5h3V19zM6.5 8.25A1.75 1.75 0 1 1 6.5 4.75a1.75 1.75 0 0 1 0 3.5zM19 19h-3v-4.7c0-1.1-.4-1.8-1.4-1.8-.8 0-1.3.5-1.5 1.1-.1.2-.1.5-.1.7V19h-3V9.5h3v1.3a3 3 0 0 1 2.7-1.5c2 0 3.5 1.3 3.5 4.1V19z"/></symbol>
+    <symbol id="ic-twitter" viewBox="0 0 24 24" stroke="none" fill="currentColor"><path d="M17.53 3h3.37l-7.36 8.41L22 21h-6.78l-5.31-6.94L3.74 21H.37l7.87-9-7.5-9h6.95l4.8 6.34L17.53 3zm-1.18 16h1.87L7.74 4.86H5.74L16.35 19z"/></symbol>
+    <symbol id="ic-youtube" viewBox="0 0 24 24" stroke="none" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-5.8 31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></symbol>
+    <symbol id="ic-link-external" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6M10 14 21 3"/></symbol>
+    <symbol id="ic-map-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+  </defs>
+</svg>
+
+<!-- ============================================================
+     SKIP LINK — Accessibility
+============================================================ -->
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- ============================================================
+     1. ACCESSIBILITY TOOLBAR
+============================================================ -->
+<div class="a11y" role="toolbar" aria-label="Accessibility tools">
+  <button onclick="document.body.classList.toggle('hc')" aria-label="Toggle high contrast" title="High contrast"><svg class="ic"><use href="#ic-contrast"/></svg></button>
+  <button onclick="document.body.classList.toggle('fs-lg')" aria-label="Toggle large font size" title="Large font"><span style="font-weight:800;font-size:.95em">A+</span></button>
+  <button onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top" title="Top"><svg class="ic"><use href="#ic-arrow-up"/></svg></button>
+</div>
+
+<!-- ============================================================
+     2. TOP BAR
+============================================================ -->
+<div class="topbar" role="banner">
+  <div class="container">
+    <div class="tb-l">
+      <a href="tel:0400000001" aria-label="Call Darwin office"><svg class="ic"><use href="#ic-phone"/></svg> Darwin: 0400 000 001</a>
+      <a href="tel:0400000002" aria-label="Call Perth office"><svg class="ic"><use href="#ic-phone"/></svg> Perth: 0400 000 002</a>
+      <a href="mailto:admin@lnhealthcareservices.com.au"><svg class="ic"><use href="#ic-mail"/></svg> admin@lnhealthcareservices.com.au</a>
+    </div>
+    <div class="tb-r">
+      <select class="lang-sel" aria-label="Select language" onchange="document.documentElement.lang=this.value">
+        <option value="en">English</option>
+        <option value="ar">العربية</option>
+        <option value="zh">中文</option>
+        <option value="hi">हिन्दी</option>
+        <option value="so">Soomaali</option>
+        <option value="vi">Tiếng Việt</option>
+      </select>
+      <span class="pill"><svg class="ic"><use href="#ic-shield-check"/></svg> NDIS REGISTERED</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     3. STICKY NAVIGATION
+============================================================ -->
+<nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <a href="#" class="logo" aria-label="LN Health Care Services home">
+      <span class="logo-mk">LN</span>
+      <span class="logo-tx">LN Health Care<br><small>Services</small></span>
+    </a>
+    <div class="nav-l">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <div class="nav-li">
+        <button aria-haspopup="true" aria-expanded="false">Services <svg class="ic" style="width:.85em;height:.85em"><use href="#ic-chevron-down"/></svg></button>
+        <div class="dd" role="menu">
+          <a href="#services"><svg class="ic"><use href="#ic-user-care"/></svg> Daily Personal Activities</a>
+          <a href="#services"><svg class="ic"><use href="#ic-car"/></svg> Transport Assistance</a>
+          <a href="#services"><svg class="ic"><use href="#ic-home"/></svg> Shared Living (SIL)</a>
+          <a href="#services"><svg class="ic"><use href="#ic-sparkles"/></svg> Household Tasks</a>
+          <a href="#services"><svg class="ic"><use href="#ic-globe-2"/></svg> Community Participation</a>
+          <a href="#services"><svg class="ic"><use href="#ic-house-heart"/></svg> Accommodation / Tenancy</a>
+          <a href="#services"><svg class="ic"><use href="#ic-target"/></svg> Life Skills Development</a>
+          <a href="#services"><svg class="ic"><use href="#ic-clipboard"/></svg> Support Coordination</a>
+        </div>
+      </div>
+      <a href="#guide">NDIS Guide</a>
+      <a href="#elig">Eligibility</a>
+      <a href="#referral">Referral</a>
+      <a href="#careers">Careers</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#referral" class="btn btn-g">Refer a Participant <svg class="ic"><use href="#ic-arrow-right"/></svg></a>
+      <button class="hamb" id="hamb" aria-label="Open navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile nav overlay -->
+<div class="mob-nav" id="mobNav" role="dialog" aria-label="Mobile navigation" aria-modal="true">
+  <div class="mob-nav-top">
+    <a href="#" class="logo" onclick="closeMob()">
+      <span class="logo-mk">LN</span>
+      <span class="logo-tx">LN Health Care<br><small>Services</small></span>
+    </a>
+    <button class="mob-cl" id="mobCl" aria-label="Close menu"><svg class="ic"><use href="#ic-x"/></svg></button>
+  </div>
+  <a href="#home" onclick="closeMob()">Home</a>
+  <a href="#about" onclick="closeMob()">About</a>
+  <a href="#services" onclick="closeMob()">Services</a>
+  <a href="#guide" onclick="closeMob()">NDIS Guide</a>
+  <a href="#elig" onclick="closeMob()">Eligibility Check</a>
+  <a href="#referral" onclick="closeMob()">Refer a Participant</a>
+  <a href="#careers" onclick="closeMob()">Careers</a>
+  <a href="#contact" onclick="closeMob()">Contact</a>
+  <a href="#referral" class="btn btn-g" onclick="closeMob()">Refer a Participant <svg class="ic"><use href="#ic-arrow-right"/></svg></a>
+  <div class="mob-contact">
+    <a href="tel:0400000001"><svg class="ic"><use href="#ic-phone"/></svg> Darwin: 0400 000 001</a>
+    <a href="tel:0400000002"><svg class="ic"><use href="#ic-phone"/></svg> Perth: 0400 000 002</a>
+    <a href="mailto:admin@lnhealthcareservices.com.au"><svg class="ic"><use href="#ic-mail"/></svg> admin@lnhealthcareservices.com.au</a>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- ============================================================
+     4. HERO
+============================================================ -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-l">
+      <span class="chip"><svg class="ic"><use href="#ic-sparkle"/></svg> NDIS Registered Provider — Australia</span>
+      <h1>Care That <span class="gold-u">Connects.</span><br>Lives That <span class="gold-u">Flourish.</span></h1>
+      <p class="lead">LN Health Care Services delivers tailored, person-centred NDIS supports across Australia. We empower individuals with disabilities to make choices, build independence, and thrive in their communities.</p>
+      <div class="hero-cta">
+        <a href="#services" class="btn btn-p">Explore Our Services <svg class="ic"><use href="#ic-arrow-right"/></svg></a>
+        <a href="#elig" class="btn btn-o">Check My Eligibility</a>
+      </div>
+      <div class="trust">
+        <div class="avs" aria-hidden="true">
+          <div class="av">S</div>
+          <div class="av">J</div>
+          <div class="av">M</div>
+          <div class="av">+</div>
+        </div>
+        <div class="trust-tx">500+ Participants Supported<small>Across NT &amp; WA</small></div>
+      </div>
+    </div>
+    <div class="hero-r">
+      <div class="hero-img-wrap">
+        <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=900&q=80" alt="Support worker assisting a participant with a warm smile" loading="eager" />
+      </div>
+      <div class="hero-fcard fc-1">
+        <div class="fc-ic"><svg class="ic"><use href="#ic-heart"/></svg></div>
+        <div><strong>Person-Centred Care</strong><small>Your goals, your choices, your life</small></div>
+      </div>
+      <div class="hero-fcard fc-2">
+        <span class="num">500+</span>
+        <small>Happy Participants</small>
+      </div>
+      <div class="hero-fcard fc-3"><svg class="ic"><use href="#ic-medal"/></svg> NDIS Registered</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     5. STATISTICS STRIP
+============================================================ -->
+<section class="stats" aria-label="Key statistics">
+  <div class="container">
+    <div class="stat-c reveal"><span class="n" data-target="500" data-suffix="+">0</span><span class="l">Participants Supported</span></div>
+    <div class="stat-c reveal"><span class="n" data-target="8">0</span><span class="l">NDIS Services Offered</span></div>
+    <div class="stat-c reveal"><span class="n" data-target="46" data-prefix="$" data-suffix="B+">0</span><span class="l">National NDIS Investment 2026</span></div>
+    <div class="stat-c reveal"><span class="n" data-target="761" data-suffix="K+">0</span><span class="l">Active NDIS Participants Nationally</span></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     6. ABOUT
+============================================================ -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-img reveal">
+      <img class="main-img" src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=900&q=80" alt="Care worker and participant in a warm setting" loading="lazy" />
+      <img class="accent-img" src="https://images.unsplash.com/photo-1582719188393-bb71ca45dbb9?w=400&q=80" alt="Smiling participant in community" loading="lazy" />
+      <span class="deco" aria-hidden="true"></span>
+    </div>
+    <div class="about-r reveal">
+      <span class="chip">About LN Health Care Services</span>
+      <h2>Building Stronger Lives Through Connection &amp; Care</h2>
+      <p>LN Health Care Services is an NDIS registered disability provider committed to delivering high-quality, person-centred supports across the Northern Territory and Western Australia. We walk alongside participants on their journey — championing independence, choice, and meaningful inclusion in community life.</p>
+      <p>Our experienced team is built on values of respect, compassion, empathy, and integrity. From daily personal activities and shared living to support coordination and life skills development, every plan we deliver is shaped around the goals and preferences of the individual we serve.</p>
+      <div class="values">
+        <span class="val-pill"><svg class="ic"><use href="#ic-flower"/></svg> Respect</span>
+        <span class="val-pill"><svg class="ic"><use href="#ic-heart"/></svg> Compassion</span>
+        <span class="val-pill"><svg class="ic"><use href="#ic-ear"/></svg> Empathy</span>
+        <span class="val-pill"><svg class="ic"><use href="#ic-leaf"/></svg> Integrity</span>
+        <span class="val-pill"><svg class="ic"><use href="#ic-inclusion"/></svg> Inclusion</span>
+        <span class="val-pill"><svg class="ic"><use href="#ic-target"/></svg> Independence</span>
+      </div>
+      <div class="feat">
+        <div class="feat-ic"><svg class="ic"><use href="#ic-lock"/></svg></div>
+        <div><h4>Privacy &amp; Confidentiality</h4><p>We strictly adhere to our Privacy Policy. Your information is always protected.</p></div>
+      </div>
+      <div class="feat">
+        <div class="feat-ic"><svg class="ic"><use href="#ic-trending-up"/></svg></div>
+        <div><h4>Continuous Improvement</h4><p>Your feedback guides our service enhancements and quality standards.</p></div>
+      </div>
+      <div class="feat">
+        <div class="feat-ic"><svg class="ic"><use href="#ic-house-heart"/></svg></div>
+        <div><h4>Safe &amp; Harmonious Environment</h4><p>A workplace that values both our staff and every participant we support.</p></div>
+      </div>
+      <a href="#referral" class="btn btn-p">Get Support Now <svg class="ic"><use href="#ic-arrow-right"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     7. NDIS GUIDE
+============================================================ -->
+<section class="guide" id="guide">
+  <div class="container">
+    <div class="guide-head reveal">
+      <span class="chip">NDIS Guide</span>
+      <h2>Everything You Need to Know About the NDIS</h2>
+      <p>Navigating the NDIS can feel overwhelming. We've put together a simple guide to help participants and families understand the scheme, eligibility, and what to expect.</p>
+    </div>
+    <div class="tabs reveal" role="tablist">
+      <button class="tab-btn active" data-tab="t1" onclick="showTab('t1',this)" role="tab" aria-selected="true">What is NDIS?</button>
+      <button class="tab-btn" data-tab="t2" onclick="showTab('t2',this)" role="tab" aria-selected="false">Am I Eligible?</button>
+      <button class="tab-btn" data-tab="t3" onclick="showTab('t3',this)" role="tab" aria-selected="false">How to Apply</button>
+      <button class="tab-btn" data-tab="t4" onclick="showTab('t4',this)" role="tab" aria-selected="false">Your First Plan</button>
+    </div>
+
+    <div class="tab-pan active" id="t1" role="tabpanel">
+      <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900&q=80" alt="NDIS planning illustration" loading="lazy" />
+      <div>
+        <h3>What is the NDIS?</h3>
+        <p>The National Disability Insurance Scheme (NDIS) is Australia's largest social support reform, providing funding to over 760,000 Australians with permanent and significant disabilities to access the supports they need to live an ordinary life.</p>
+        <div class="steps">
+          <div class="step"><span class="step-n">1</span><div class="step-tx"><strong>Get Access</strong><p>Apply through the NDIA to confirm eligibility.</p></div></div>
+          <div class="step"><span class="step-n">2</span><div class="step-tx"><strong>Develop Plan</strong><p>Meet with an NDIS planner to create your personal plan.</p></div></div>
+          <div class="step"><span class="step-n">3</span><div class="step-tx"><strong>Choose Provider</strong><p>Connect with an NDIS registered provider like LN Health Care Services.</p></div></div>
+          <div class="step"><span class="step-n">4</span><div class="step-tx"><strong>Receive Supports</strong><p>Begin receiving the personalised supports outlined in your plan.</p></div></div>
+        </div>
+        <a href="#elig" class="btn btn-p">Check My Eligibility <svg class="ic"><use href="#ic-arrow-right"/></svg></a>
+      </div>
+    </div>
+
+    <div class="tab-pan" id="t2" role="tabpanel">
+      <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=900&q=80" alt="Eligibility consultation" loading="lazy" />
+      <div>
+        <h3>Am I Eligible for the NDIS?</h3>
+        <p>To access the NDIS, you must meet four key criteria. Our team can help you understand each one and guide you through the process at no cost.</p>
+        <div class="crit"><div class="crit-tx"><strong>Age</strong><p>You must be under 65 years old when you apply.</p></div></div>
+        <div class="crit"><div class="crit-tx"><strong>Residency</strong><p>An Australian citizen, permanent resident, or Protected Special Category Visa holder.</p></div></div>
+        <div class="crit"><div class="crit-tx"><strong>Permanent Disability</strong><p>A disability that significantly affects your everyday life.</p></div></div>
+        <div class="crit"><div class="crit-tx"><strong>Early Intervention</strong><p>Or, you require early intervention support to reduce the impact of your disability.</p></div></div>
+        <a href="#elig" class="btn btn-p">Take the Quiz <svg class="ic"><use href="#ic-arrow-right"/></svg></a>
+      </div>
+    </div>
+
+    <div class="tab-pan" id="t3" role="tabpanel">
+      <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=900&q=80" alt="Application process" loading="lazy" />
+      <div>
+        <h3>How to Apply for the NDIS</h3>
+        <p>The application process is straightforward, but we know it can feel daunting. Our team will support you through each step.</p>
+        <div class="steps">
+          <div class="step"><span class="step-n">1</span><div class="step-tx"><strong>Contact NDIA</strong><p>Call 1800 800 110 or apply online to start the process.</p></div></div>
+          <div class="step"><span class="step-n">2</span><div class="step-tx"><strong>Complete ARF</strong><p>Submit the Access Request Form with your details.</p></div></div>
+          <div class="step"><span class="step-n">3</span><div class="step-tx"><strong>Gather Evidence</strong><p>Collect medical reports and supporting documentation.</p></div></div>
+          <div class="step"><span class="step-n">4</span><div class="step-tx"><strong>Assessment</strong><p>NDIA reviews your application against access criteria.</p></div></div>
+          <div class="step"><span class="step-n">5</span><div class="step-tx"><strong>Planning Meeting</strong><p>Once approved, attend a planning meeting to develop your first plan.</p></div></div>
+        </div>
+        <a href="#referral" class="btn btn-p">Get Help Applying <svg class="ic"><use href="#ic-arrow-right"/></svg></a>
+      </div>
+    </div>
+
+    <div class="tab-pan" id="t4" role="tabpanel">
+      <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=900&q=80" alt="First NDIS plan meeting" loading="lazy" />
+      <div>
+        <h3>Understanding Your First Plan</h3>
+        <p>Your NDIS plan funding is divided into three categories, each designed to fund different types of supports based on your goals.</p>
+        <div class="crit"><div class="crit-tx"><strong><span class="dot dot-g"></span> Core Supports</strong><p>Daily activities, consumables, transport, and social participation.</p></div></div>
+        <div class="crit"><div class="crit-tx"><strong><span class="dot dot-y"></span> Capacity Building</strong><p>Building independence and skills — therapy, support coordination, training.</p></div></div>
+        <div class="crit"><div class="crit-tx"><strong><span class="dot dot-b"></span> Capital</strong><p>Higher-cost supports — assistive technology, home modifications, vehicles.</p></div></div>
+        <a href="#referral" class="btn btn-p">Make a Referral <svg class="ic"><use href="#ic-arrow-right"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     8. ELIGIBILITY CHECK
+============================================================ -->
+<section class="elig" id="elig">
+  <div class="container">
+    <div class="elig-l reveal">
+      <span class="chip">Eligibility Checker</span>
+      <h2>Am I Eligible for NDIS?</h2>
+      <p>Take our quick 4-question quiz to find out if you may qualify for NDIS support. Our team is also available to help with a free, no-obligation eligibility assessment.</p>
+      <div class="elig-crit">
+        <div class="e-card"><span class="ck"><svg class="ic"><use href="#ic-check"/></svg></span><span>Under 65 years old and Australian resident</span></div>
+        <div class="e-card"><span class="ck"><svg class="ic"><use href="#ic-check"/></svg></span><span>Permanent disability affecting daily life</span></div>
+        <div class="e-card"><span class="ck"><svg class="ic"><use href="#ic-check"/></svg></span><span>Early intervention could improve outcomes</span></div>
+        <div class="e-card"><span class="ck"><svg class="ic"><use href="#ic-check"/></svg></span><span>Not currently receiving equivalent state funding</span></div>
+      </div>
+      <p class="elig-disc">Our team provides free guidance for all NDIS access queries. No obligation.</p>
+    </div>
+
+    <div class="quiz reveal">
+      <h3>NDIS Eligibility Quiz</h3>
+      <p>Answer 4 quick questions</p>
+      <div class="quiz-prog"><div class="bar" id="qBar"></div></div>
+
+      <div class="quiz-q active" id="q1">
+        <p class="q-tx">1. Are you an Australian citizen, permanent resident, or hold a Protected Special Category Visa?</p>
+        <div class="q-opts">
+          <button class="q-opt" onclick="nextQ('q2',this,'yes')"><svg class="ic ic-yes"><use href="#ic-check-circle"/></svg> Yes</button>
+          <button class="q-opt" onclick="noResult()"><svg class="ic ic-no"><use href="#ic-x-circle"/></svg> No</button>
+        </div>
+      </div>
+
+      <div class="quiz-q" id="q2">
+        <p class="q-tx">2. Are you currently under 65 years of age?</p>
+        <div class="q-opts">
+          <button class="q-opt" onclick="nextQ('q3',this,'yes')"><svg class="ic ic-yes"><use href="#ic-check-circle"/></svg> Yes</button>
+          <button class="q-opt" onclick="noResult()"><svg class="ic ic-no"><use href="#ic-x-circle"/></svg> No</button>
+        </div>
+      </div>
+
+      <div class="quiz-q" id="q3">
+        <p class="q-tx">3. Do you have a permanent disability that significantly affects your daily activities?</p>
+        <div class="q-opts">
+          <button class="q-opt" onclick="nextQ('q4',this,'yes')"><svg class="ic ic-yes"><use href="#ic-check-circle"/></svg> Yes</button>
+          <button class="q-opt" onclick="earlyQ()"><svg class="ic" style="color:var(--a)"><use href="#ic-zap"/></svg> Early Intervention</button>
+          <button class="q-opt" onclick="noResult()"><svg class="ic ic-no"><use href="#ic-x-circle"/></svg> No</button>
+        </div>
+      </div>
+
+      <div class="quiz-q" id="q4">
+        <p class="q-tx">4. Are you currently receiving equivalent disability support from a state/territory government?</p>
+        <div class="q-opts">
+          <button class="q-opt" onclick="yesResult()"><svg class="ic ic-no"><use href="#ic-x-circle"/></svg> No</button>
+          <button class="q-opt" onclick="noResult()"><svg class="ic ic-yes"><use href="#ic-check-circle"/></svg> Yes</button>
+        </div>
+      </div>
+
+      <div class="quiz-res" id="rYes">
+        <div class="quiz-res-ic"><svg class="ic"><use href="#ic-party"/></svg></div>
+        <h4>You May Be Eligible!</h4>
+        <p>Based on your answers, you may qualify for NDIS support. Contact our team for a free, no-obligation eligibility assessment.</p>
+        <a href="#referral" class="btn btn-p">Make a Referral <svg class="ic"><use href="#ic-arrow-right"/></svg></a>
+      </div>
+
+      <div class="quiz-res" id="rNo">
+        <div class="quiz-res-ic alert"><svg class="ic"><use href="#ic-alert"/></svg></div>
+        <h4>You May Not Currently Qualify</h4>
+        <p>Based on your answers, NDIS may not be the right fit right now. We can still help — let's explore other support options together.</p>
+        <a href="#contact" class="btn btn-p">Contact Our Team <svg class="ic"><use href="#ic-arrow-right"/></svg></a>
+      </div>
+
+      <div class="quiz-res" id="rEarly">
+        <div class="quiz-res-ic warn"><svg class="ic"><use href="#ic-lightbulb"/></svg></div>
+        <h4>Early Intervention May Apply</h4>
+        <p>You may be eligible for early intervention supports under the NDIS. Speak with our team to learn more about your options.</p>
+        <a href="#contact" class="btn btn-p">Talk to Our Team <svg class="ic"><use href="#ic-arrow-right"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     9. SERVICES
+============================================================ -->
+<section id="services">
+  <div class="container">
+    <div class="svc-head reveal">
+      <span class="chip">Our Services</span>
+      <h2>Tailored NDIS Supports for Every Journey</h2>
+      <p>From daily living to community participation, we deliver a full range of NDIS supports designed around your goals and preferences.</p>
+    </div>
+    <div class="svc-filter reveal">
+      <button class="active" onclick="filterSvc('all',this)">All Services</button>
+      <button onclick="filterSvc('daily',this)">Daily Living</button>
+      <button onclick="filterSvc('community',this)">Community</button>
+      <button onclick="filterSvc('coordination',this)">Coordination</button>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card reveal" data-cat="daily">
+        <div class="img"><span class="tag">Core</span><img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80" alt="Daily personal activities" loading="lazy" /></div>
+        <div class="svc-body"><div class="svc-ic"><svg class="ic"><use href="#ic-user-care"/></svg></div><h4>Daily Personal Activities</h4><p>Personalised support with everyday routines — bathing, dressing, meals — for a comfortable, independent life.</p><a href="#referral" class="svc-link">Learn More <svg class="ic"><use href="#ic-arrow-right"/></svg></a></div>
+      </div>
+      <div class="svc-card reveal" data-cat="daily">
+        <div class="img"><span class="tag">Core</span><img src="https://images.unsplash.com/photo-1486006920555-c77dcf18193c?w=600&q=80" alt="Transport support" loading="lazy" /></div>
+        <div class="svc-body"><div class="svc-ic"><svg class="ic"><use href="#ic-car"/></svg></div><h4>Transport Assistance</h4><p>Reliable transport to appointments, social activities, and community events. Never miss what matters.</p><a href="#referral" class="svc-link">Learn More <svg class="ic"><use href="#ic-arrow-right"/></svg></a></div>
+      </div>
+      <div class="svc-card reveal" data-cat="daily">
+        <div class="img"><span class="tag">SIL</span><img src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=600&q=80" alt="Shared independent living" loading="lazy" /></div>
+        <div class="svc-body"><div class="svc-ic"><svg class="ic"><use href="#ic-home"/></svg></div><h4>Shared Living / SIL</h4><p>Supporting you in group or shared living settings, fostering independence and daily collaboration.</p><a href="#referral" class="svc-link">Learn More <svg class="ic"><use href="#ic-arrow-right"/></svg></a></div>
+      </div>
+      <div class="svc-card reveal" data-cat="daily">
+        <div class="img"><span class="tag">Core</span><img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&q=80" alt="Household tasks" loading="lazy" /></div>
+        <div class="svc-body"><div class="svc-ic"><svg class="ic"><use href="#ic-sparkles"/></svg></div><h4>Household Tasks</h4><p>Cleaning, laundry, meal preparation — keeping your home safe, clean and comfortable.</p><a href="#referral" class="svc-link">Learn More <svg class="ic"><use href="#ic-arrow-right"/></svg></a></div>
+      </div>
+      <div class="svc-card reveal" data-cat="community">
+        <div class="img"><span class="tag">Community</span><img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?w=600&q=80" alt="Community participation" loading="lazy" /></div>
+        <div class="svc-body"><div class="svc-ic"><svg class="ic"><use href="#ic-globe-2"/></svg></div><h4>Social &amp; Community Participation</h4><p>Engaging in meaningful community activities that enrich your social life and overall wellbeing.</p><a href="#referral" class="svc-link">Learn More <svg class="ic"><use href="#ic-arrow-right"/></svg></a></div>
+      </div>
+      <div class="svc-card reveal" data-cat="daily">
+        <div class="img"><span class="tag">Housing</span><img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80" alt="Accommodation tenancy" loading="lazy" /></div>
+        <div class="svc-body"><div class="svc-ic"><svg class="ic"><use href="#ic-house-heart"/></svg></div><h4>Accommodation / Tenancy</h4><p>Helping you manage tenancy, ensuring safe, secure, and suitable living arrangements.</p><a href="#referral" class="svc-link">Learn More <svg class="ic"><use href="#ic-arrow-right"/></svg></a></div>
+      </div>
+      <div class="svc-card reveal" data-cat="community">
+        <div class="img"><span class="tag">Capacity</span><img src="https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=600&q=80" alt="Life skills development" loading="lazy" /></div>
+        <div class="svc-body"><div class="svc-ic"><svg class="ic"><use href="#ic-target"/></svg></div><h4>Life Skills Development</h4><p>Building skills for independence, self-confidence, and successful everyday living.</p><a href="#referral" class="svc-link">Learn More <svg class="ic"><use href="#ic-arrow-right"/></svg></a></div>
+      </div>
+      <div class="svc-card reveal" data-cat="coordination">
+        <div class="img"><span class="tag">Coordination</span><img src="https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?w=600&q=80" alt="Support coordination" loading="lazy" /></div>
+        <div class="svc-body"><div class="svc-ic"><svg class="ic"><use href="#ic-clipboard"/></svg></div><h4>Support Coordination</h4><p>Navigating your NDIS plan, connecting you with the right services to achieve your goals.</p><a href="#referral" class="svc-link">Learn More <svg class="ic"><use href="#ic-arrow-right"/></svg></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     10. WHY CHOOSE LN
+============================================================ -->
+<section class="why">
+  <div class="container">
+    <div class="why-l reveal">
+      <span class="chip">Why Choose Us</span>
+      <h2>Warm, Trusted &amp; Deeply Committed to You</h2>
+      <p>We don't just deliver services — we build lasting relationships built on trust, dignity and respect. Here's why participants and families choose LN Health Care Services.</p>
+      <div class="why-grid">
+        <div class="why-card"><div class="why-ic"><svg class="ic"><use href="#ic-heart"/></svg></div><h4>Person-Centred</h4><p>Every plan built around your individual goals.</p></div>
+        <div class="why-card"><div class="why-ic"><svg class="ic"><use href="#ic-medal"/></svg></div><h4>NDIS Registered</h4><p>Certified, audited, and monitored for quality.</p></div>
+        <div class="why-card"><div class="why-ic"><svg class="ic"><use href="#ic-lock"/></svg></div><h4>Privacy First</h4><p>Your information is always protected and respected.</p></div>
+        <div class="why-card"><div class="why-ic"><svg class="ic"><use href="#ic-bolt"/></svg></div><h4>Fast Response</h4><p>We respond within 24 hours and match you quickly.</p></div>
+        <div class="why-card"><div class="why-ic"><svg class="ic"><use href="#ic-map-pin"/></svg></div><h4>2 Locations</h4><p>Darwin NT and Perth WA with local experienced teams.</p></div>
+        <div class="why-card"><div class="why-ic"><svg class="ic"><use href="#ic-globe"/></svg></div><h4>Multilingual</h4><p>Culturally sensitive support in multiple languages.</p></div>
+      </div>
+      <a href="#referral" class="btn btn-p">Book a Free Consultation <svg class="ic"><use href="#ic-arrow-right"/></svg></a>
+    </div>
+    <div class="why-r reveal">
+      <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=900&q=80" alt="Trusted care worker with participant" loading="lazy" />
+      <div class="why-quote">
+        <svg class="ic why-quote-ic"><use href="#ic-quote"/></svg>
+        <em>"Disability is not a roadblock — it's a unique pathway to resilience."</em>
+        <span>— LN Values</span>
+      </div>
+      <div class="why-stat">
+        <strong>4.9 <svg class="ic" style="font-size:1.4rem;color:var(--a)"><use href="#ic-star"/></svg></strong>
+        <span>Average participant satisfaction</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     11. TESTIMONIALS
+============================================================ -->
+<section class="testi">
+  <div class="container">
+    <div class="testi-head reveal">
+      <span class="chip dark">Real Stories</span>
+      <h2>What Our Participants Are Saying</h2>
+      <p>Every story matters. Here are just a few of the participants whose lives we've had the privilege of supporting.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="stars"><svg class="ic"><use href="#ic-star"/></svg><svg class="ic"><use href="#ic-star"/></svg><svg class="ic"><use href="#ic-star"/></svg><svg class="ic"><use href="#ic-star"/></svg><svg class="ic"><use href="#ic-star"/></svg></div>
+        <p class="testi-q">"The team at LN truly listens. They built a plan around my actual goals — not what they thought I should do. After 6 months I'm more independent than I've been in years."</p>
+        <div class="testi-a">
+          <div class="testi-av">SL</div>
+          <div><strong>Sarah L.</strong><span>NDIS Participant, Darwin</span></div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="stars"><svg class="ic"><use href="#ic-star"/></svg><svg class="ic"><use href="#ic-star"/></svg><svg class="ic"><use href="#ic-star"/></svg><svg class="ic"><use href="#ic-star"/></svg><svg class="ic"><use href="#ic-star"/></svg></div>
+        <p class="testi-q">"I've been with three providers before LN. None of them came close. My support worker turns up on time, knows me, and treats me like family. I finally feel respected."</p>
+        <div class="testi-a">
+          <div class="testi-av">JT</div>
+          <div><strong>James T.</strong><span>NDIS Participant, Perth</span></div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="stars"><svg class="ic"><use href="#ic-star"/></svg><svg class="ic"><use href="#ic-star"/></svg><svg class="ic"><use href="#ic-star"/></svg><svg class="ic"><use href="#ic-star"/></svg><svg class="ic"><use href="#ic-star"/></svg></div>
+        <p class="testi-q">"As a mum, I was anxious about handing over my son's care. LN has been beyond wonderful. They understand his needs, his cultural background — and most importantly, his joy."</p>
+        <div class="testi-a">
+          <div class="testi-av">ER</div>
+          <div><strong>Emily R.</strong><span>NDIS Participant, Darwin</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     12. PARTICIPANT REFERRAL FORM
+============================================================ -->
+<section class="form-section" id="referral">
+  <div class="container">
+    <div class="form-info reveal">
+      <span class="chip">Refer a Participant</span>
+      <h2>Refer Someone to LN Health Care Services</h2>
+      <p>Use this form to refer a participant to our NDIS services. Our team will review the referral and reach out within 2 business days.</p>
+      <div class="info-cards">
+        <div class="info-card"><div class="info-ic"><svg class="ic"><use href="#ic-clipboard-check"/></svg></div><span>Our team reviews all referrals within 2 business days</span></div>
+        <div class="info-card"><div class="info-ic"><svg class="ic"><use href="#ic-lock"/></svg></div><span>All referral information is strictly confidential</span></div>
+        <div class="info-card"><div class="info-ic"><svg class="ic"><use href="#ic-heart"/></svg></div><span>We support participants across Darwin NT and Perth WA</span></div>
+        <div class="info-card"><div class="info-ic"><svg class="ic"><use href="#ic-phone"/></svg></div><span>For urgent referrals, call us directly on 0400 000 001</span></div>
+      </div>
+    </div>
+
+    <div class="form-card reveal">
+      <h3><svg class="ic" style="color:var(--a);font-size:1.15em"><use href="#ic-clipboard"/></svg> Participant Referral Form</h3>
+      <p class="form-sub">All fields marked with <span style="color:#e53e3e">*</span> are required</p>
+
+      <!--
+        REPLACE the action below with your Formspree endpoint for live email delivery:
+        action="https://formspree.io/f/YOUR_FORM_ID"
+        Currently using mailto: as a graceful fallback — the form's submitReferral() handler
+        will attempt fetch() then fall back to opening the user's mail client.
+      -->
+      <form id="referralForm"
+            action="mailto:admin@lnhealthcareservices.com.au"
+            method="POST"
+            enctype="multipart/form-data"
+            onsubmit="return submitReferral(event)"
+            novalidate>
+        <input type="hidden" name="_subject" value="New Participant Referral — LN Health Care Services" />
+        <input type="hidden" name="_replyto" id="rRefEmail" value="" />
+
+        <!-- Section A: Referrer -->
+        <div class="form-sect">
+          <span class="form-sect-lbl">A · Referrer Information</span>
+          <div class="form-row">
+            <div class="form-grp"><label>First Name <span class="req">*</span></label><input type="text" name="referrer_first_name" data-req="1" /></div>
+            <div class="form-grp"><label>Last Name <span class="req">*</span></label><input type="text" name="referrer_last_name" data-req="1" /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-grp"><label>Organisation / Company</label><input type="text" name="referrer_org" /></div>
+            <div class="form-grp"><label>Relationship to Participant <span class="req">*</span></label>
+              <select name="referrer_relationship" data-req="1">
+                <option value="">— Select —</option>
+                <option>Family Member</option>
+                <option>Support Coordinator</option>
+                <option>Healthcare Professional</option>
+                <option>Community Worker</option>
+                <option>Self-Referral</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-grp"><label>Phone Number <span class="req">*</span></label><input type="tel" name="referrer_phone" data-req="1" data-type="phone" placeholder="04XX XXX XXX" /></div>
+            <div class="form-grp"><label>Email Address <span class="req">*</span></label><input type="email" name="referrer_email" id="referrerEmailInput" data-req="1" data-type="email" /></div>
+          </div>
+        </div>
+
+        <!-- Section B: Participant -->
+        <div class="form-sect">
+          <span class="form-sect-lbl">B · Participant Information</span>
+          <div class="form-row">
+            <div class="form-grp"><label>Participant First Name <span class="req">*</span></label><input type="text" name="participant_first_name" data-req="1" /></div>
+            <div class="form-grp"><label>Participant Last Name <span class="req">*</span></label><input type="text" name="participant_last_name" data-req="1" /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-grp"><label>Date of Birth <span class="req">*</span></label><input type="date" name="participant_dob" data-req="1" /></div>
+            <div class="form-grp"><label>Gender</label>
+              <select name="participant_gender">
+                <option value="">— Select —</option>
+                <option>Male</option><option>Female</option><option>Non-binary</option><option>Prefer not to say</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-grp"><label>NDIS Number</label><input type="text" name="ndis_number" placeholder="If known" /></div>
+            <div class="form-grp"><label>Primary Language at Home</label><input type="text" name="primary_language" /></div>
+          </div>
+          <div class="form-grp">
+            <label>Is the participant currently NDIS funded? <span class="req">*</span></label>
+            <div class="radio-grp" data-req-radio="ndis_funded">
+              <label class="opt-label"><input type="radio" name="ndis_funded" value="Yes" /><span>Yes</span></label>
+              <label class="opt-label"><input type="radio" name="ndis_funded" value="No" /><span>No</span></label>
+              <label class="opt-label"><input type="radio" name="ndis_funded" value="In Progress" /><span>Application in Progress</span></label>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-grp"><label>Participant / Guardian Phone <span class="req">*</span></label><input type="tel" name="participant_phone" data-req="1" data-type="phone" placeholder="04XX XXX XXX" /></div>
+            <div class="form-grp"><label>Participant Email</label><input type="email" name="participant_email" data-type="email-opt" /></div>
+          </div>
+          <div class="form-grp"><label>Participant Address <span class="req">*</span></label><textarea name="participant_address" rows="2" data-req="1"></textarea></div>
+          <div class="form-grp"><label>Preferred Location for Services <span class="req">*</span></label>
+            <select name="preferred_location" data-req="1">
+              <option value="">— Select —</option>
+              <option>Darwin, NT</option>
+              <option>Perth, WA</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Section C: Support Needs -->
+        <div class="form-sect">
+          <span class="form-sect-lbl">C · Support Requirements</span>
+          <div class="form-grp">
+            <label>Services Required <span class="req">*</span> <small style="color:var(--mt);font-weight:400">(select all that apply)</small></label>
+            <div class="check-grp col" data-req-check="services_required">
+              <label class="opt-label"><input type="checkbox" name="services_required" value="Daily Personal Activities" /><span>Daily Personal Activities</span></label>
+              <label class="opt-label"><input type="checkbox" name="services_required" value="Transport Assistance" /><span>Transport Assistance</span></label>
+              <label class="opt-label"><input type="checkbox" name="services_required" value="Shared Living (SIL)" /><span>Shared Living (SIL)</span></label>
+              <label class="opt-label"><input type="checkbox" name="services_required" value="Household Tasks" /><span>Household Tasks</span></label>
+              <label class="opt-label"><input type="checkbox" name="services_required" value="Social & Community Participation" /><span>Social &amp; Community Participation</span></label>
+              <label class="opt-label"><input type="checkbox" name="services_required" value="Accommodation / Tenancy" /><span>Accommodation / Tenancy</span></label>
+              <label class="opt-label"><input type="checkbox" name="services_required" value="Life Skills Development" /><span>Life Skills Development</span></label>
+              <label class="opt-label"><input type="checkbox" name="services_required" value="Support Coordination" /><span>Support Coordination</span></label>
+            </div>
+          </div>
+          <div class="form-grp"><label>Level of Support Required <span class="req">*</span></label>
+            <select name="support_level" data-req="1">
+              <option value="">— Select —</option>
+              <option>Low — a few hours/week</option>
+              <option>Moderate — daily support</option>
+              <option>High — 24/7 or near constant support</option>
+              <option>Not sure</option>
+            </select>
+          </div>
+          <div class="form-grp">
+            <label>Does the participant have any behaviours of concern?</label>
+            <div class="radio-grp">
+              <label class="opt-label"><input type="radio" name="behaviours_concern" value="Yes" /><span>Yes</span></label>
+              <label class="opt-label"><input type="radio" name="behaviours_concern" value="No" /><span>No</span></label>
+            </div>
+          </div>
+          <div class="form-grp"><label>If yes, please describe</label><textarea name="behaviours_describe" rows="3"></textarea></div>
+          <div class="form-grp"><label>Medical conditions or diagnoses relevant to care</label><textarea name="medical_conditions" rows="3"></textarea></div>
+          <div class="form-grp"><label>Cultural or language considerations</label><textarea name="cultural_considerations" rows="2"></textarea></div>
+          <div class="form-grp"><label>Preferred start date</label><input type="date" name="preferred_start" /></div>
+          <div class="form-grp"><label>Additional notes or special requirements</label><textarea name="additional_notes" rows="4"></textarea></div>
+        </div>
+
+        <!-- Section D: Consent -->
+        <div class="form-sect">
+          <span class="form-sect-lbl">D · Consent &amp; Declaration</span>
+          <div class="consent-grp">
+            <label class="consent"><input type="checkbox" name="consent_share" data-req="1" /><span>I confirm the participant or their guardian has consented to this referral and the sharing of their information with LN Health Care Services. <span class="req">*</span></span></label>
+            <label class="consent"><input type="checkbox" name="consent_accurate" data-req="1" /><span>I declare that the information provided is accurate and complete to the best of my knowledge. <span class="req">*</span></span></label>
+            <label class="consent"><input type="checkbox" name="consent_copy" /><span>I would like to receive a confirmation copy of this referral to my email.</span></label>
+          </div>
+          <p class="privacy-stmt">LN Health Care Services handles all personal information in accordance with the Privacy Act 1988 and our Privacy Policy.</p>
+        </div>
+
+        <button type="submit" class="form-submit">Submit Referral <svg class="ic"><use href="#ic-arrow-right"/></svg></button>
+      </form>
+
+      <div class="success-msg" id="referralSuccess" role="status" aria-live="polite">
+        <div class="success-ic"><svg class="ic"><use href="#ic-check"/></svg></div>
+        <h4>Referral Submitted Successfully!</h4>
+        <p>Thank you for referring to LN Health Care Services. Our team will review the referral and contact you and the participant within 2 business days.</p>
+        <span class="ref" id="refRef">Reference: LN-REF-000000</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     13. JOB APPLICATION / CAREERS
+============================================================ -->
+<section class="form-section app" id="careers">
+  <div class="container">
+    <div class="form-info reveal">
+      <span class="chip">Work With Us</span>
+      <h2>Join the LN Health Care Services Team</h2>
+      <p>We are always looking for passionate, caring people to join our team. If you share our values and want to make a real difference in people's lives, we'd love to hear from you.</p>
+      <div class="info-cards">
+        <div class="info-card"><div class="info-ic"><svg class="ic"><use href="#ic-sparkle"/></svg></div><span>Meaningful Work — Make a real difference every day</span></div>
+        <div class="info-card"><div class="info-ic"><svg class="ic"><use href="#ic-dollar"/></svg></div><span>Competitive Pay — SCHADS Award rates + allowances</span></div>
+        <div class="info-card"><div class="info-ic"><svg class="ic"><use href="#ic-calendar"/></svg></div><span>Flexible Hours — Full-time, part-time, and casual available</span></div>
+        <div class="info-card"><div class="info-ic"><svg class="ic"><use href="#ic-book"/></svg></div><span>Training Provided — All mandatory checks covered by us</span></div>
+        <div class="info-card"><div class="info-ic"><svg class="ic"><use href="#ic-globe-2"/></svg></div><span>Diverse Team — Inclusive, multicultural workplace</span></div>
+        <div class="info-card"><div class="info-ic"><svg class="ic"><use href="#ic-rocket"/></svg></div><span>Career Growth — Pathways into senior and coordinator roles</span></div>
+      </div>
+      <div class="job-roles">
+        <h4 style="font-family:'Syne',sans-serif;color:var(--g);margin:24px 0 14px">Current Open Roles</h4>
+        <div class="role"><span class="role-ic"><svg class="ic"><use href="#ic-medical"/></svg></span><span>Support Worker — Darwin NT (Casual / Part-time)</span></div>
+        <div class="role"><span class="role-ic"><svg class="ic"><use href="#ic-medical"/></svg></span><span>Support Worker — Perth WA (Casual / Part-time)</span></div>
+        <div class="role"><span class="role-ic"><svg class="ic"><use href="#ic-clipboard"/></svg></span><span>Support Coordinator (Full-time, NT)</span></div>
+        <div class="role"><span class="role-ic"><svg class="ic"><use href="#ic-car"/></svg></span><span>Transport Support Worker (Casual, WA)</span></div>
+        <div class="role"><span class="role-ic"><svg class="ic"><use href="#ic-home"/></svg></span><span>SIL Support Worker (Full-time, NT)</span></div>
+        <p class="job-note">Don't see your role? Apply anyway — we hire on a rolling basis.</p>
+      </div>
+    </div>
+
+    <div class="form-card reveal">
+      <h3><svg class="ic" style="color:var(--a);font-size:1.15em"><use href="#ic-briefcase"/></svg> Job Application Form</h3>
+      <p class="form-sub">All fields marked with <span style="color:#e53e3e">*</span> are required</p>
+
+      <!--
+        REPLACE action below with your Formspree endpoint:
+        action="https://formspree.io/f/YOUR_FORM_ID"
+      -->
+      <form id="applicationForm"
+            action="mailto:admin@lnhealthcareservices.com.au"
+            method="POST"
+            enctype="multipart/form-data"
+            onsubmit="return submitApplication(event)"
+            novalidate>
+        <input type="hidden" name="_subject" value="New Job Application — LN Health Care Services" />
+        <input type="hidden" name="_replyto" id="aRefEmail" value="" />
+
+        <!-- Section A: Personal -->
+        <div class="form-sect">
+          <span class="form-sect-lbl">A · Personal Details</span>
+          <div class="form-row">
+            <div class="form-grp"><label>First Name <span class="req">*</span></label><input type="text" name="applicant_first_name" data-req="1" /></div>
+            <div class="form-grp"><label>Last Name <span class="req">*</span></label><input type="text" name="applicant_last_name" data-req="1" /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-grp"><label>Date of Birth <span class="req">*</span></label><input type="date" name="applicant_dob" data-req="1" /></div>
+            <div class="form-grp"><label>Phone Number <span class="req">*</span></label><input type="tel" name="applicant_phone" data-req="1" data-type="phone" placeholder="04XX XXX XXX" /></div>
+          </div>
+          <div class="form-grp"><label>Email Address <span class="req">*</span></label><input type="email" name="applicant_email" id="applicantEmailInput" data-req="1" data-type="email" /></div>
+          <div class="form-grp"><label>Current Address <span class="req">*</span></label><textarea name="applicant_address" rows="2" data-req="1"></textarea></div>
+          <div class="form-grp"><label>Location Applying For <span class="req">*</span></label>
+            <select name="location_applying" data-req="1">
+              <option value="">— Select —</option>
+              <option>Darwin, NT</option>
+              <option>Perth, WA</option>
+              <option>Both</option>
+            </select>
+          </div>
+          <div class="form-grp">
+            <label>Do you have the right to work in Australia? <span class="req">*</span></label>
+            <div class="radio-grp col" data-req-radio="right_to_work">
+              <label class="opt-label"><input type="radio" name="right_to_work" value="Citizen / PR" /><span>Yes — Citizen / Permanent Resident</span></label>
+              <label class="opt-label"><input type="radio" name="right_to_work" value="Work Visa" /><span>Yes — Valid Work Visa</span></label>
+              <label class="opt-label"><input type="radio" name="right_to_work" value="No" /><span>No</span></label>
+            </div>
+          </div>
+          <div class="form-grp"><label>Languages Spoken</label><input type="text" name="languages" placeholder="e.g. English, Vietnamese" /></div>
+        </div>
+
+        <!-- Section B: Role & Availability -->
+        <div class="form-sect">
+          <span class="form-sect-lbl">B · Role &amp; Availability</span>
+          <div class="form-grp"><label>Position Applying For <span class="req">*</span></label>
+            <select name="position" data-req="1">
+              <option value="">— Select —</option>
+              <option>Support Worker</option>
+              <option>Support Coordinator</option>
+              <option>Transport Support Worker</option>
+              <option>SIL Support Worker</option>
+              <option>Other — specify below</option>
+            </select>
+          </div>
+          <div class="form-grp"><label>If "Other", please specify</label><input type="text" name="position_other" /></div>
+          <div class="form-grp">
+            <label>Employment Type Preferred <span class="req">*</span></label>
+            <div class="radio-grp" data-req-radio="employment_type">
+              <label class="opt-label"><input type="radio" name="employment_type" value="Full-time" /><span>Full-time</span></label>
+              <label class="opt-label"><input type="radio" name="employment_type" value="Part-time" /><span>Part-time</span></label>
+              <label class="opt-label"><input type="radio" name="employment_type" value="Casual" /><span>Casual</span></label>
+              <label class="opt-label"><input type="radio" name="employment_type" value="Open to any" /><span>Open to any</span></label>
+            </div>
+          </div>
+          <div class="form-grp"><label>Available Start Date <span class="req">*</span></label><input type="date" name="start_date" data-req="1" /></div>
+          <div class="form-grp">
+            <label>Days Available <span class="req">*</span></label>
+            <div class="check-grp" data-req-check="days_available">
+              <label class="opt-label"><input type="checkbox" name="days_available" value="Monday" /><span>Mon</span></label>
+              <label class="opt-label"><input type="checkbox" name="days_available" value="Tuesday" /><span>Tue</span></label>
+              <label class="opt-label"><input type="checkbox" name="days_available" value="Wednesday" /><span>Wed</span></label>
+              <label class="opt-label"><input type="checkbox" name="days_available" value="Thursday" /><span>Thu</span></label>
+              <label class="opt-label"><input type="checkbox" name="days_available" value="Friday" /><span>Fri</span></label>
+              <label class="opt-label"><input type="checkbox" name="days_available" value="Saturday" /><span>Sat</span></label>
+              <label class="opt-label"><input type="checkbox" name="days_available" value="Sunday" /><span>Sun</span></label>
+            </div>
+          </div>
+          <div class="form-grp">
+            <label>Available for overnight / 24-hour shifts?</label>
+            <div class="radio-grp">
+              <label class="opt-label"><input type="radio" name="overnight" value="Yes" /><span>Yes</span></label>
+              <label class="opt-label"><input type="radio" name="overnight" value="No" /><span>No</span></label>
+              <label class="opt-label"><input type="radio" name="overnight" value="Sometimes" /><span>Sometimes</span></label>
+            </div>
+          </div>
+          <div class="form-grp">
+            <label>Valid Australian driver's licence? <span class="req">*</span></label>
+            <div class="radio-grp" data-req-radio="drivers_licence">
+              <label class="opt-label"><input type="radio" name="drivers_licence" value="Yes" /><span>Yes</span></label>
+              <label class="opt-label"><input type="radio" name="drivers_licence" value="No" /><span>No</span></label>
+            </div>
+          </div>
+          <div class="form-grp">
+            <label>Access to a reliable vehicle?</label>
+            <div class="radio-grp">
+              <label class="opt-label"><input type="radio" name="own_vehicle" value="Yes" /><span>Yes</span></label>
+              <label class="opt-label"><input type="radio" name="own_vehicle" value="No" /><span>No</span></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section C: Qualifications -->
+        <div class="form-sect">
+          <span class="form-sect-lbl">C · Qualifications &amp; Experience</span>
+          <div class="form-grp"><label>Highest Education Level <span class="req">*</span></label>
+            <select name="education" data-req="1">
+              <option value="">— Select —</option>
+              <option>High School</option>
+              <option>Certificate III in Individual Support</option>
+              <option>Certificate IV in Disability</option>
+              <option>Diploma</option>
+              <option>Bachelor's Degree</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-grp"><label>Years of experience in disability/aged care</label>
+            <select name="experience_years">
+              <option value="">— Select —</option>
+              <option>No experience — willing to learn</option>
+              <option>Less than 1 year</option>
+              <option>1–2 years</option>
+              <option>3–5 years</option>
+              <option>5+ years</option>
+            </select>
+          </div>
+          <div class="form-grp">
+            <label>NDIS Worker Screening Check <span class="req">*</span></label>
+            <div class="radio-grp col" data-req-radio="ndis_check">
+              <label class="opt-label"><input type="radio" name="ndis_check" value="Yes — current" /><span>Yes — current</span></label>
+              <label class="opt-label"><input type="radio" name="ndis_check" value="Applied — pending" /><span>Applied — pending</span></label>
+              <label class="opt-label"><input type="radio" name="ndis_check" value="No — understand required" /><span>No — I understand one is required</span></label>
+            </div>
+          </div>
+          <div class="form-grp">
+            <label>Working with Children Check (if applicable)</label>
+            <div class="radio-grp">
+              <label class="opt-label"><input type="radio" name="wwc_check" value="Yes — current" /><span>Yes — current</span></label>
+              <label class="opt-label"><input type="radio" name="wwc_check" value="Not applicable" /><span>Not applicable</span></label>
+              <label class="opt-label"><input type="radio" name="wwc_check" value="No" /><span>No</span></label>
+            </div>
+          </div>
+          <div class="form-grp">
+            <label>First Aid Certificate</label>
+            <div class="radio-grp">
+              <label class="opt-label"><input type="radio" name="first_aid" value="Yes — current" /><span>Yes — current</span></label>
+              <label class="opt-label"><input type="radio" name="first_aid" value="Expired" /><span>Expired</span></label>
+              <label class="opt-label"><input type="radio" name="first_aid" value="No" /><span>No</span></label>
+            </div>
+          </div>
+          <div class="form-grp">
+            <label>COVID-19 vaccination certificate</label>
+            <div class="radio-grp">
+              <label class="opt-label"><input type="radio" name="covid_vac" value="Yes" /><span>Yes</span></label>
+              <label class="opt-label"><input type="radio" name="covid_vac" value="Partial" /><span>Partially</span></label>
+              <label class="opt-label"><input type="radio" name="covid_vac" value="No" /><span>No</span></label>
+              <label class="opt-label"><input type="radio" name="covid_vac" value="Prefer not to say" /><span>Prefer not to say</span></label>
+            </div>
+          </div>
+          <div class="form-grp"><label>Relevant certifications or training</label><textarea name="certifications" rows="3"></textarea></div>
+          <div class="form-grp"><label>Briefly describe your relevant experience <span class="req">*</span></label><textarea name="experience_desc" rows="5" data-req="1" placeholder="Tell us about your experience supporting people with disabilities, elderly care, or community services..."></textarea></div>
+          <div class="form-grp"><label>Why do you want to work at LN Health Care Services? <span class="req">*</span></label><textarea name="motivation" rows="4" data-req="1"></textarea></div>
+          <div class="form-grp">
+            <label>Can you provide 2 professional references if required? <span class="req">*</span></label>
+            <div class="radio-grp" data-req-radio="references_avail">
+              <label class="opt-label"><input type="radio" name="references_avail" value="Yes" /><span>Yes</span></label>
+              <label class="opt-label"><input type="radio" name="references_avail" value="No" /><span>No</span></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section D: Attachments -->
+        <div class="form-sect">
+          <span class="form-sect-lbl">D · Attachments</span>
+          <div class="form-grp"><label>Upload Resume / CV <span class="req">*</span></label><input type="file" name="resume" data-req="1" data-file="1" accept=".pdf,.doc,.docx" /></div>
+          <div class="form-grp"><label>Upload Cover Letter (optional)</label><input type="file" name="cover_letter" data-file="1" accept=".pdf,.doc,.docx" /></div>
+          <p class="privacy-stmt">Max file size: 5MB each. Accepted formats: PDF, DOC, DOCX</p>
+        </div>
+
+        <!-- Section E: Declaration -->
+        <div class="form-sect">
+          <span class="form-sect-lbl">E · Declaration</span>
+          <div class="consent-grp">
+            <label class="consent"><input type="checkbox" name="decl_truthful" data-req="1" /><span>I confirm that all information provided in this application is true and accurate to the best of my knowledge. <span class="req">*</span></span></label>
+            <label class="consent"><input type="checkbox" name="decl_rejection" data-req="1" /><span>I understand that providing false information may result in my application being rejected. <span class="req">*</span></span></label>
+            <label class="consent"><input type="checkbox" name="decl_retain" /><span>I consent to LN Health Care Services retaining my details for future vacancies if unsuccessful.</span></label>
+          </div>
+        </div>
+
+        <button type="submit" class="form-submit">Submit Application <svg class="ic"><use href="#ic-arrow-right"/></svg></button>
+      </form>
+
+      <div class="success-msg" id="applicationSuccess" role="status" aria-live="polite">
+        <div class="success-ic"><svg class="ic"><use href="#ic-check"/></svg></div>
+        <h4>Application Submitted!</h4>
+        <p>Thank you for applying to LN Health Care Services. We will review your application and reach out within 5–7 business days.</p>
+        <span class="ref" id="appRef">Application Reference: LN-APP-000000</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     14. FAQ
+============================================================ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="faq-l reveal">
+      <span class="chip">FAQ</span>
+      <h2>Got Questions? We've Got Answers.</h2>
+      <p>Find answers to the most common questions about NDIS and how LN Health Care Services can support you.</p>
+      <div class="faq-cnt">
+        <h4>Still have questions?</h4>
+        <p>Our friendly team is here to help — no question is too small.</p>
+        <a href="#contact">Contact us <svg class="ic"><use href="#ic-arrow-right"/></svg></a>
+      </div>
+    </div>
+    <div class="faq-list reveal">
+      <div class="acc"><div class="acc-head" tabindex="0" role="button" aria-expanded="false" onclick="toggleAcc(this)"><h4>What is the NDIS and who is it for?</h4><span class="acc-ic"><svg class="ic"><use href="#ic-plus"/></svg></span></div><div class="acc-body"><div>The National Disability Insurance Scheme (NDIS) is a federally funded program that provides support to Australians under 65 with a permanent and significant disability. It funds reasonable and necessary supports that help participants pursue their goals and live an ordinary life.</div></div></div>
+      <div class="acc"><div class="acc-head" tabindex="0" role="button" aria-expanded="false" onclick="toggleAcc(this)"><h4>How do I become an NDIS participant?</h4><span class="acc-ic"><svg class="ic"><use href="#ic-plus"/></svg></span></div><div class="acc-body"><div>You apply by completing an Access Request Form through the NDIA. We can guide you through this process step by step, including help gathering supporting evidence from your healthcare providers.</div></div></div>
+      <div class="acc"><div class="acc-head" tabindex="0" role="button" aria-expanded="false" onclick="toggleAcc(this)"><h4>Can I switch from my current provider to LN Health Care Services?</h4><span class="acc-ic"><svg class="ic"><use href="#ic-plus"/></svg></span></div><div class="acc-body"><div>Absolutely. As an NDIS participant, you have full choice and control. We make the transition seamless — simply contact us, and we'll handle the paperwork and ensure continuity of care.</div></div></div>
+      <div class="acc"><div class="acc-head" tabindex="0" role="button" aria-expanded="false" onclick="toggleAcc(this)"><h4>What areas does LN Health Care Services service?</h4><span class="acc-ic"><svg class="ic"><use href="#ic-plus"/></svg></span></div><div class="acc-body"><div>We currently operate across the Northern Territory (with our Darwin office) and Western Australia (Perth office), and surrounding regions. Contact us to confirm coverage for your specific area.</div></div></div>
+      <div class="acc"><div class="acc-head" tabindex="0" role="button" aria-expanded="false" onclick="toggleAcc(this)"><h4>How are NDIS supports funded and managed?</h4><span class="acc-ic"><svg class="ic"><use href="#ic-plus"/></svg></span></div><div class="acc-body"><div>NDIS plans can be NDIA-managed, plan-managed, or self-managed. We work with all three options. Funding is divided into Core, Capacity Building, and Capital categories — and we'll help you make the most of every dollar.</div></div></div>
+      <div class="acc"><div class="acc-head" tabindex="0" role="button" aria-expanded="false" onclick="toggleAcc(this)"><h4>How do I refer someone to LN Health Care Services?</h4><span class="acc-ic"><svg class="ic"><use href="#ic-plus"/></svg></span></div><div class="acc-body"><div>Use the Participant Referral Form on this page, email admin@lnhealthcareservices.com.au, or call our team directly. Referrals from family, support coordinators, healthcare professionals, and self-referrals are all welcome.</div></div></div>
+      <div class="acc"><div class="acc-head" tabindex="0" role="button" aria-expanded="false" onclick="toggleAcc(this)"><h4>What qualifications do your support workers have?</h4><span class="acc-ic"><svg class="ic"><use href="#ic-plus"/></svg></span></div><div class="acc-body"><div>All our staff hold current NDIS Worker Screening Checks, First Aid certifications, and most have Certificate III or IV in Individual Support / Disability. We provide ongoing training to maintain the highest quality standards.</div></div></div>
+      <div class="acc"><div class="acc-head" tabindex="0" role="button" aria-expanded="false" onclick="toggleAcc(this)"><h4>How quickly can services begin after referral?</h4><span class="acc-ic"><svg class="ic"><use href="#ic-plus"/></svg></span></div><div class="acc-body"><div>We aim to respond to all referrals within 2 business days. Depending on your needs and location, services can typically commence within 5–10 business days following an initial intake meeting.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     15. NDIS REGISTERED BANNER
+============================================================ -->
+<section class="ndis-banner" id="contact">
+  <div class="container">
+    <div class="reveal">
+      <span class="chip" style="background:var(--g);color:var(--a)">NDIS Registered Provider</span>
+      <h2>Proudly NDIS Registered Provider</h2>
+      <p>LN Health Care Services is fully audited, registered, and compliant with the NDIS Quality and Safeguards Commission. Every participant we support benefits from the safety, quality assurance, and accountability that registration delivers.</p>
+    </div>
+    <div class="ndis-r reveal">
+      <div class="ndis-badge">
+        <div class="ndis-badge-ic"><svg class="ic"><use href="#ic-medal"/></svg></div>
+        <div><strong>NDIS Registered</strong><span>Provider Number: XXXXXXXXX</span></div>
+      </div>
+      <a href="#referral" class="btn btn-p">Get Started Today <svg class="ic"><use href="#ic-arrow-right"/></svg></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================
+     16. ACKNOWLEDGEMENT OF COUNTRY
+============================================================ -->
+<section class="ack" aria-label="Acknowledgement of Country">
+  <div class="container">
+    <h3><svg class="ic" style="color:var(--a);font-size:1.2em"><use href="#ic-globe"/></svg> Acknowledgement of Country</h3>
+    <p>LN Health Care Services acknowledges the Traditional Custodians of the lands on which we live, work, and walk — the Larrakia people of the Darwin region and the Whadjuk Noongar people of the Perth region. We pay our deepest respects to Elders past, present, and emerging, and extend that respect to all Aboriginal and Torres Strait Islander peoples.</p>
+    <div class="flags">
+      <div class="flag-i"><svg class="ic flag-svg"><use href="#ic-flag-aboriginal"/></svg><span>Aboriginal Flag</span></div>
+      <div class="flag-i"><svg class="ic flag-svg"><use href="#ic-flag-au"/></svg><span>Australian Flag</span></div>
+      <div class="flag-i"><svg class="ic flag-svg"><use href="#ic-flag-torres"/></svg><span>Torres Strait Islander Flag</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     17. FOOTER
+============================================================ -->
+<footer>
+  <div class="container">
+    <div class="fcol fcol-1">
+      <a href="#" class="logo">
+        <span class="logo-mk">LN</span>
+        <span class="logo-tx">LN Health Care<br><small>Services</small></span>
+      </a>
+      <p>An NDIS registered disability provider delivering tailored, person-centred supports across Darwin NT and Perth WA. Care that connects, lives that flourish.</p>
+      <div class="socials">
+        <a href="#" aria-label="Facebook"><svg class="ic"><use href="#ic-facebook"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg class="ic"><use href="#ic-linkedin"/></svg></a>
+        <a href="#" aria-label="Twitter / X"><svg class="ic"><use href="#ic-twitter"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg class="ic"><use href="#ic-youtube"/></svg></a>
+      </div>
+    </div>
+    <div class="fcol">
+      <h5>Quick Links</h5>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#guide">NDIS Guide</a></li>
+        <li><a href="#elig">Eligibility</a></li>
+        <li><a href="#referral">Referral Form</a></li>
+        <li><a href="#careers">Careers</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h5>Our Services</h5>
+      <ul>
+        <li><a href="#services">Daily Personal Activities</a></li>
+        <li><a href="#services">Transport Assistance</a></li>
+        <li><a href="#services">Shared Living (SIL)</a></li>
+        <li><a href="#services">Household Tasks</a></li>
+        <li><a href="#services">Community Participation</a></li>
+        <li><a href="#services">Accommodation / Tenancy</a></li>
+        <li><a href="#services">Life Skills Development</a></li>
+        <li><a href="#services">Support Coordination</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h5>Get In Touch</h5>
+      <div class="contact-i"><span class="contact-ic"><svg class="ic"><use href="#ic-phone"/></svg></span><div><strong style="color:#fff">Darwin:</strong> 0400 000 001<br>Darwin, Northern Territory</div></div>
+      <div class="contact-i"><span class="contact-ic"><svg class="ic"><use href="#ic-phone"/></svg></span><div><strong style="color:#fff">Perth:</strong> 0400 000 002<br>Perth, Western Australia</div></div>
+      <div class="contact-i"><span class="contact-ic"><svg class="ic"><use href="#ic-mail"/></svg></span><div>admin@lnhealthcareservices.com.au</div></div>
+      <div class="contact-i"><span class="contact-ic"><svg class="ic"><use href="#ic-link-external"/></svg></span><div><a href="https://www.ndis.gov.au" target="_blank" rel="noopener">NDIS.gov.au</a></div></div>
+      <div class="contact-i"><span class="contact-ic"><svg class="ic"><use href="#ic-lock"/></svg></span><div><a href="#">Privacy Policy</a></div></div>
+    </div>
+  </div>
+  <div class="fbottom">
+    <div>© 2025 LN Health Care Services. All rights reserved. ABN: XX XXX XXX XXX</div>
+    <div class="fbottom-l">
+      <a href="#">Terms</a>
+      <a href="#">Privacy</a>
+      <a href="#">Accessibility</a>
+      <a href="#">Sitemap</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     18. FLOATING ELEMENTS
+============================================================ -->
+<button class="chat-bubble" id="chatBtn" onclick="toggleChat()" aria-label="Open quick contact menu"><svg class="ic"><use href="#ic-message"/></svg></button>
+<div class="chat-pop" id="chatPop" role="dialog" aria-label="Quick contact">
+  <strong>Hi! How can we help?</strong>
+  <a href="tel:0400000001"><svg class="ic"><use href="#ic-phone"/></svg> Call Darwin Office</a>
+  <a href="tel:0400000002"><svg class="ic"><use href="#ic-phone"/></svg> Call Perth Office</a>
+  <a href="#referral" onclick="toggleChat()"><svg class="ic"><use href="#ic-clipboard"/></svg> Refer a Participant</a>
+  <a href="#careers" onclick="toggleChat()"><svg class="ic"><use href="#ic-briefcase"/></svg> Apply for a Job</a>
+  <a href="mailto:admin@lnhealthcareservices.com.au"><svg class="ic"><use href="#ic-mail"/></svg> Send Email</a>
+</div>
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top"><svg class="ic"><use href="#ic-arrow-up"/></svg></button>
+
+<script src="script.js" defer></script>
+</body>
+</html>
