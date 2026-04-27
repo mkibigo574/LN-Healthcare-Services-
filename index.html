@@ -213,11 +213,11 @@
       <a href="#guide">NDIS Guide</a>
       <a href="#elig">Eligibility</a>
       <a href="#referral">Referral</a>
-      <a href="#careers">Careers</a>
+      <a href="apply.html" target="_blank" rel="noopener">Careers</a>
       <a href="#contact">Contact</a>
     </div>
     <div class="nav-cta">
-      <a href="#referral" class="btn btn-g">Refer a Participant <svg class="ic"><use href="#ic-arrow-right"/></svg></a>
+      <button type="button" class="btn btn-g" onclick="openReferralModal()">Refer a Participant <svg class="ic"><use href="#ic-arrow-right"/></svg></button>
       <button class="hamb" id="hamb" aria-label="Open navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -238,9 +238,9 @@
   <a href="#guide" onclick="closeMob()">NDIS Guide</a>
   <a href="#elig" onclick="closeMob()">Eligibility Check</a>
   <a href="#referral" onclick="closeMob()">Refer a Participant</a>
-  <a href="#careers" onclick="closeMob()">Careers</a>
+  <a href="apply.html" target="_blank" rel="noopener" onclick="closeMob()">Careers</a>
   <a href="#contact" onclick="closeMob()">Contact</a>
-  <a href="#referral" class="btn btn-g" onclick="closeMob()">Refer a Participant <svg class="ic"><use href="#ic-arrow-right"/></svg></a>
+  <button type="button" class="btn btn-g" onclick="closeMob();openReferralModal()">Refer a Participant <svg class="ic"><use href="#ic-arrow-right"/></svg></button>
   <div class="mob-contact">
     <a href="tel:0400000001"><svg class="ic"><use href="#ic-phone"/></svg> Darwin: 0400 000 001</a>
     <a href="tel:0400000002"><svg class="ic"><use href="#ic-phone"/></svg> Perth: 0400 000 002</a>
@@ -337,7 +337,7 @@
         <div class="feat-ic"><svg class="ic"><use href="#ic-house-heart"/></svg></div>
         <div><h4>Safe &amp; Harmonious Environment</h4><p>A workplace that values both our staff and every participant we support.</p></div>
       </div>
-      <a href="#referral" class="btn btn-p">Get Support Now <svg class="ic"><use href="#ic-arrow-right"/></svg></a>
+      <button type="button" class="btn btn-p" onclick="openReferralModal()">Get Support Now <svg class="ic"><use href="#ic-arrow-right"/></svg></button>
     </div>
   </div>
 </section>
@@ -399,7 +399,7 @@
           <div class="step"><span class="step-n">4</span><div class="step-tx"><strong>Assessment</strong><p>NDIA reviews your application against access criteria.</p></div></div>
           <div class="step"><span class="step-n">5</span><div class="step-tx"><strong>Planning Meeting</strong><p>Once approved, attend a planning meeting to develop your first plan.</p></div></div>
         </div>
-        <a href="#referral" class="btn btn-p">Get Help Applying <svg class="ic"><use href="#ic-arrow-right"/></svg></a>
+        <button type="button" class="btn btn-p" onclick="openReferralModal()">Get Help Applying <svg class="ic"><use href="#ic-arrow-right"/></svg></button>
       </div>
     </div>
 
@@ -411,7 +411,7 @@
         <div class="crit"><div class="crit-tx"><strong><span class="dot dot-g"></span> Core Supports</strong><p>Daily activities, consumables, transport, and social participation.</p></div></div>
         <div class="crit"><div class="crit-tx"><strong><span class="dot dot-y"></span> Capacity Building</strong><p>Building independence and skills — therapy, support coordination, training.</p></div></div>
         <div class="crit"><div class="crit-tx"><strong><span class="dot dot-b"></span> Capital</strong><p>Higher-cost supports — assistive technology, home modifications, vehicles.</p></div></div>
-        <a href="#referral" class="btn btn-p">Make a Referral <svg class="ic"><use href="#ic-arrow-right"/></svg></a>
+        <button type="button" class="btn btn-p" onclick="openReferralModal()">Make a Referral <svg class="ic"><use href="#ic-arrow-right"/></svg></button>
       </div>
     </div>
   </div>
@@ -477,7 +477,7 @@
         <div class="quiz-res-ic"><svg class="ic"><use href="#ic-party"/></svg></div>
         <h4>You May Be Eligible!</h4>
         <p>Based on your answers, you may qualify for NDIS support. Contact our team for a free, no-obligation eligibility assessment.</p>
-        <a href="#referral" class="btn btn-p">Make a Referral <svg class="ic"><use href="#ic-arrow-right"/></svg></a>
+        <button type="button" class="btn btn-p" onclick="openReferralModal()">Make a Referral <svg class="ic"><use href="#ic-arrow-right"/></svg></button>
       </div>
 
       <div class="quiz-res" id="rNo">
@@ -567,7 +567,7 @@
         <div class="why-card"><div class="why-ic"><svg class="ic"><use href="#ic-map-pin"/></svg></div><h4>2 Locations</h4><p>Darwin NT and Perth WA with local experienced teams.</p></div>
         <div class="why-card"><div class="why-ic"><svg class="ic"><use href="#ic-globe"/></svg></div><h4>Multilingual</h4><p>Culturally sensitive support in multiple languages.</p></div>
       </div>
-      <a href="#referral" class="btn btn-p">Book a Free Consultation <svg class="ic"><use href="#ic-arrow-right"/></svg></a>
+      <button type="button" class="btn btn-p" onclick="openReferralModal()">Book a Free Consultation <svg class="ic"><use href="#ic-arrow-right"/></svg></button>
     </div>
     <div class="why-r reveal">
       <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=900&q=80" alt="Trusted care worker with participant" loading="lazy" />
@@ -640,16 +640,34 @@
       </div>
     </div>
 
-    <div class="form-card reveal">
-      <h3><svg class="ic" style="color:var(--a);font-size:1.15em"><use href="#ic-clipboard"/></svg> Participant Referral Form</h3>
-      <p class="form-sub">All fields marked with <span style="color:#e53e3e">*</span> are required</p>
+    <div class="cta-card reveal">
+      <span class="cta-ic"><svg class="ic"><use href="#ic-clipboard"/></svg></span>
+      <h3>Ready to Refer a Participant?</h3>
+      <p>Open our secure referral form and submit a complete intake in just a few minutes. Our team will respond within 2 business days.</p>
+      <div class="cta-meta">
+        <span class="cta-meta-i"><svg class="ic"><use href="#ic-check-circle"/></svg> Confidential &amp; secure</span>
+        <span class="cta-meta-i"><svg class="ic"><use href="#ic-check-circle"/></svg> Takes ~5 minutes</span>
+        <span class="cta-meta-i"><svg class="ic"><use href="#ic-check-circle"/></svg> Reviewed within 2 business days</span>
+      </div>
+      <button type="button" class="btn btn-g" onclick="openReferralModal()">Open Referral Form <svg class="ic"><use href="#ic-arrow-right"/></svg></button>
+      <span class="ext-note"><svg class="ic"><use href="#ic-info"/></svg> Opens in a secure overlay on this page</span>
+    </div>
+  </div>
+</section>
 
-      <!--
-        REPLACE the action below with your Formspree endpoint for live email delivery:
-        action="https://formspree.io/f/YOUR_FORM_ID"
-        Currently using mailto: as a graceful fallback — the form's submitReferral() handler
-        will attempt fetch() then fall back to opening the user's mail client.
-      -->
+<!-- ============================================================
+     REFERRAL MODAL (form lives here, not inline)
+============================================================ -->
+<div class="modal" id="referralModal" role="dialog" aria-modal="true" aria-labelledby="referralModalTitle">
+  <div class="modal-card">
+    <div class="modal-head">
+      <div>
+        <h3 id="referralModalTitle"><svg class="ic" style="color:var(--p);font-size:1.15em"><use href="#ic-clipboard"/></svg> Participant Referral Form</h3>
+        <p class="form-sub">All fields marked with <span style="color:#e53e3e">*</span> are required</p>
+      </div>
+      <button type="button" class="modal-cl" onclick="closeReferralModal()" aria-label="Close referral form"><svg class="ic"><use href="#ic-x"/></svg></button>
+    </div>
+    <div class="modal-body">
       <form id="referralForm"
             action="mailto:admin@lnhealthcareservices.com.au"
             method="POST"
@@ -790,7 +808,7 @@
       </div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- ============================================================
      13. JOB APPLICATION / CAREERS
@@ -820,211 +838,17 @@
       </div>
     </div>
 
-    <div class="form-card reveal">
-      <h3><svg class="ic" style="color:var(--a);font-size:1.15em"><use href="#ic-briefcase"/></svg> Job Application Form</h3>
-      <p class="form-sub">All fields marked with <span style="color:#e53e3e">*</span> are required</p>
-
-      <!--
-        REPLACE action below with your Formspree endpoint:
-        action="https://formspree.io/f/YOUR_FORM_ID"
-      -->
-      <form id="applicationForm"
-            action="mailto:admin@lnhealthcareservices.com.au"
-            method="POST"
-            enctype="multipart/form-data"
-            onsubmit="return submitApplication(event)"
-            novalidate>
-        <input type="hidden" name="_subject" value="New Job Application — LN Health Care Services" />
-        <input type="hidden" name="_replyto" id="aRefEmail" value="" />
-
-        <!-- Section A: Personal -->
-        <div class="form-sect">
-          <span class="form-sect-lbl">A · Personal Details</span>
-          <div class="form-row">
-            <div class="form-grp"><label>First Name <span class="req">*</span></label><input type="text" name="applicant_first_name" data-req="1" /></div>
-            <div class="form-grp"><label>Last Name <span class="req">*</span></label><input type="text" name="applicant_last_name" data-req="1" /></div>
-          </div>
-          <div class="form-row">
-            <div class="form-grp"><label>Date of Birth <span class="req">*</span></label><input type="date" name="applicant_dob" data-req="1" /></div>
-            <div class="form-grp"><label>Phone Number <span class="req">*</span></label><input type="tel" name="applicant_phone" data-req="1" data-type="phone" placeholder="04XX XXX XXX" /></div>
-          </div>
-          <div class="form-grp"><label>Email Address <span class="req">*</span></label><input type="email" name="applicant_email" id="applicantEmailInput" data-req="1" data-type="email" /></div>
-          <div class="form-grp"><label>Current Address <span class="req">*</span></label><textarea name="applicant_address" rows="2" data-req="1"></textarea></div>
-          <div class="form-grp"><label>Location Applying For <span class="req">*</span></label>
-            <select name="location_applying" data-req="1">
-              <option value="">— Select —</option>
-              <option>Darwin, NT</option>
-              <option>Perth, WA</option>
-              <option>Both</option>
-            </select>
-          </div>
-          <div class="form-grp">
-            <label>Do you have the right to work in Australia? <span class="req">*</span></label>
-            <div class="radio-grp col" data-req-radio="right_to_work">
-              <label class="opt-label"><input type="radio" name="right_to_work" value="Citizen / PR" /><span>Yes — Citizen / Permanent Resident</span></label>
-              <label class="opt-label"><input type="radio" name="right_to_work" value="Work Visa" /><span>Yes — Valid Work Visa</span></label>
-              <label class="opt-label"><input type="radio" name="right_to_work" value="No" /><span>No</span></label>
-            </div>
-          </div>
-          <div class="form-grp"><label>Languages Spoken</label><input type="text" name="languages" placeholder="e.g. English, Vietnamese" /></div>
-        </div>
-
-        <!-- Section B: Role & Availability -->
-        <div class="form-sect">
-          <span class="form-sect-lbl">B · Role &amp; Availability</span>
-          <div class="form-grp"><label>Position Applying For <span class="req">*</span></label>
-            <select name="position" data-req="1">
-              <option value="">— Select —</option>
-              <option>Support Worker</option>
-              <option>Support Coordinator</option>
-              <option>Transport Support Worker</option>
-              <option>SIL Support Worker</option>
-              <option>Other — specify below</option>
-            </select>
-          </div>
-          <div class="form-grp"><label>If "Other", please specify</label><input type="text" name="position_other" /></div>
-          <div class="form-grp">
-            <label>Employment Type Preferred <span class="req">*</span></label>
-            <div class="radio-grp" data-req-radio="employment_type">
-              <label class="opt-label"><input type="radio" name="employment_type" value="Full-time" /><span>Full-time</span></label>
-              <label class="opt-label"><input type="radio" name="employment_type" value="Part-time" /><span>Part-time</span></label>
-              <label class="opt-label"><input type="radio" name="employment_type" value="Casual" /><span>Casual</span></label>
-              <label class="opt-label"><input type="radio" name="employment_type" value="Open to any" /><span>Open to any</span></label>
-            </div>
-          </div>
-          <div class="form-grp"><label>Available Start Date <span class="req">*</span></label><input type="date" name="start_date" data-req="1" /></div>
-          <div class="form-grp">
-            <label>Days Available <span class="req">*</span></label>
-            <div class="check-grp" data-req-check="days_available">
-              <label class="opt-label"><input type="checkbox" name="days_available" value="Monday" /><span>Mon</span></label>
-              <label class="opt-label"><input type="checkbox" name="days_available" value="Tuesday" /><span>Tue</span></label>
-              <label class="opt-label"><input type="checkbox" name="days_available" value="Wednesday" /><span>Wed</span></label>
-              <label class="opt-label"><input type="checkbox" name="days_available" value="Thursday" /><span>Thu</span></label>
-              <label class="opt-label"><input type="checkbox" name="days_available" value="Friday" /><span>Fri</span></label>
-              <label class="opt-label"><input type="checkbox" name="days_available" value="Saturday" /><span>Sat</span></label>
-              <label class="opt-label"><input type="checkbox" name="days_available" value="Sunday" /><span>Sun</span></label>
-            </div>
-          </div>
-          <div class="form-grp">
-            <label>Available for overnight / 24-hour shifts?</label>
-            <div class="radio-grp">
-              <label class="opt-label"><input type="radio" name="overnight" value="Yes" /><span>Yes</span></label>
-              <label class="opt-label"><input type="radio" name="overnight" value="No" /><span>No</span></label>
-              <label class="opt-label"><input type="radio" name="overnight" value="Sometimes" /><span>Sometimes</span></label>
-            </div>
-          </div>
-          <div class="form-grp">
-            <label>Valid Australian driver's licence? <span class="req">*</span></label>
-            <div class="radio-grp" data-req-radio="drivers_licence">
-              <label class="opt-label"><input type="radio" name="drivers_licence" value="Yes" /><span>Yes</span></label>
-              <label class="opt-label"><input type="radio" name="drivers_licence" value="No" /><span>No</span></label>
-            </div>
-          </div>
-          <div class="form-grp">
-            <label>Access to a reliable vehicle?</label>
-            <div class="radio-grp">
-              <label class="opt-label"><input type="radio" name="own_vehicle" value="Yes" /><span>Yes</span></label>
-              <label class="opt-label"><input type="radio" name="own_vehicle" value="No" /><span>No</span></label>
-            </div>
-          </div>
-        </div>
-
-        <!-- Section C: Qualifications -->
-        <div class="form-sect">
-          <span class="form-sect-lbl">C · Qualifications &amp; Experience</span>
-          <div class="form-grp"><label>Highest Education Level <span class="req">*</span></label>
-            <select name="education" data-req="1">
-              <option value="">— Select —</option>
-              <option>High School</option>
-              <option>Certificate III in Individual Support</option>
-              <option>Certificate IV in Disability</option>
-              <option>Diploma</option>
-              <option>Bachelor's Degree</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="form-grp"><label>Years of experience in disability/aged care</label>
-            <select name="experience_years">
-              <option value="">— Select —</option>
-              <option>No experience — willing to learn</option>
-              <option>Less than 1 year</option>
-              <option>1–2 years</option>
-              <option>3–5 years</option>
-              <option>5+ years</option>
-            </select>
-          </div>
-          <div class="form-grp">
-            <label>NDIS Worker Screening Check <span class="req">*</span></label>
-            <div class="radio-grp col" data-req-radio="ndis_check">
-              <label class="opt-label"><input type="radio" name="ndis_check" value="Yes — current" /><span>Yes — current</span></label>
-              <label class="opt-label"><input type="radio" name="ndis_check" value="Applied — pending" /><span>Applied — pending</span></label>
-              <label class="opt-label"><input type="radio" name="ndis_check" value="No — understand required" /><span>No — I understand one is required</span></label>
-            </div>
-          </div>
-          <div class="form-grp">
-            <label>Working with Children Check (if applicable)</label>
-            <div class="radio-grp">
-              <label class="opt-label"><input type="radio" name="wwc_check" value="Yes — current" /><span>Yes — current</span></label>
-              <label class="opt-label"><input type="radio" name="wwc_check" value="Not applicable" /><span>Not applicable</span></label>
-              <label class="opt-label"><input type="radio" name="wwc_check" value="No" /><span>No</span></label>
-            </div>
-          </div>
-          <div class="form-grp">
-            <label>First Aid Certificate</label>
-            <div class="radio-grp">
-              <label class="opt-label"><input type="radio" name="first_aid" value="Yes — current" /><span>Yes — current</span></label>
-              <label class="opt-label"><input type="radio" name="first_aid" value="Expired" /><span>Expired</span></label>
-              <label class="opt-label"><input type="radio" name="first_aid" value="No" /><span>No</span></label>
-            </div>
-          </div>
-          <div class="form-grp">
-            <label>COVID-19 vaccination certificate</label>
-            <div class="radio-grp">
-              <label class="opt-label"><input type="radio" name="covid_vac" value="Yes" /><span>Yes</span></label>
-              <label class="opt-label"><input type="radio" name="covid_vac" value="Partial" /><span>Partially</span></label>
-              <label class="opt-label"><input type="radio" name="covid_vac" value="No" /><span>No</span></label>
-              <label class="opt-label"><input type="radio" name="covid_vac" value="Prefer not to say" /><span>Prefer not to say</span></label>
-            </div>
-          </div>
-          <div class="form-grp"><label>Relevant certifications or training</label><textarea name="certifications" rows="3"></textarea></div>
-          <div class="form-grp"><label>Briefly describe your relevant experience <span class="req">*</span></label><textarea name="experience_desc" rows="5" data-req="1" placeholder="Tell us about your experience supporting people with disabilities, elderly care, or community services..."></textarea></div>
-          <div class="form-grp"><label>Why do you want to work at LN Health Care Services? <span class="req">*</span></label><textarea name="motivation" rows="4" data-req="1"></textarea></div>
-          <div class="form-grp">
-            <label>Can you provide 2 professional references if required? <span class="req">*</span></label>
-            <div class="radio-grp" data-req-radio="references_avail">
-              <label class="opt-label"><input type="radio" name="references_avail" value="Yes" /><span>Yes</span></label>
-              <label class="opt-label"><input type="radio" name="references_avail" value="No" /><span>No</span></label>
-            </div>
-          </div>
-        </div>
-
-        <!-- Section D: Attachments -->
-        <div class="form-sect">
-          <span class="form-sect-lbl">D · Attachments</span>
-          <div class="form-grp"><label>Upload Resume / CV <span class="req">*</span></label><input type="file" name="resume" data-req="1" data-file="1" accept=".pdf,.doc,.docx" /></div>
-          <div class="form-grp"><label>Upload Cover Letter (optional)</label><input type="file" name="cover_letter" data-file="1" accept=".pdf,.doc,.docx" /></div>
-          <p class="privacy-stmt">Max file size: 5MB each. Accepted formats: PDF, DOC, DOCX</p>
-        </div>
-
-        <!-- Section E: Declaration -->
-        <div class="form-sect">
-          <span class="form-sect-lbl">E · Declaration</span>
-          <div class="consent-grp">
-            <label class="consent"><input type="checkbox" name="decl_truthful" data-req="1" /><span>I confirm that all information provided in this application is true and accurate to the best of my knowledge. <span class="req">*</span></span></label>
-            <label class="consent"><input type="checkbox" name="decl_rejection" data-req="1" /><span>I understand that providing false information may result in my application being rejected. <span class="req">*</span></span></label>
-            <label class="consent"><input type="checkbox" name="decl_retain" /><span>I consent to LN Health Care Services retaining my details for future vacancies if unsuccessful.</span></label>
-          </div>
-        </div>
-
-        <button type="submit" class="form-submit">Submit Application <svg class="ic"><use href="#ic-arrow-right"/></svg></button>
-      </form>
-
-      <div class="success-msg" id="applicationSuccess" role="status" aria-live="polite">
-        <div class="success-ic"><svg class="ic"><use href="#ic-check"/></svg></div>
-        <h4>Application Submitted!</h4>
-        <p>Thank you for applying to LN Health Care Services. We will review your application and reach out within 5–7 business days.</p>
-        <span class="ref" id="appRef">Application Reference: LN-APP-000000</span>
+    <div class="cta-card reveal">
+      <span class="cta-ic"><svg class="ic"><use href="#ic-briefcase"/></svg></span>
+      <h3>Ready to Join Our Team?</h3>
+      <p>Open our full job application form in a new tab. You can attach your resume and submit everything in one go.</p>
+      <div class="cta-meta">
+        <span class="cta-meta-i"><svg class="ic"><use href="#ic-check-circle"/></svg> All open roles in one place</span>
+        <span class="cta-meta-i"><svg class="ic"><use href="#ic-check-circle"/></svg> Upload resume &amp; cover letter</span>
+        <span class="cta-meta-i"><svg class="ic"><use href="#ic-check-circle"/></svg> Reviewed within 5–7 business days</span>
       </div>
+      <a href="apply.html" target="_blank" rel="noopener" class="btn btn-g">Open Application Form <svg class="ic"><use href="#ic-link-external"/></svg></a>
+      <span class="ext-note"><svg class="ic"><use href="#ic-info"/></svg> Opens in a new tab</span>
     </div>
   </div>
 </section>
@@ -1072,7 +896,7 @@
         <div class="ndis-badge-ic"><svg class="ic"><use href="#ic-medal"/></svg></div>
         <div><strong>NDIS Registered</strong><span>Provider Number: XXXXXXXXX</span></div>
       </div>
-      <a href="#referral" class="btn btn-p">Get Started Today <svg class="ic"><use href="#ic-arrow-right"/></svg></a>
+      <button type="button" class="btn btn-p" onclick="openReferralModal()">Get Started Today <svg class="ic"><use href="#ic-arrow-right"/></svg></button>
     </div>
   </div>
 </section>
@@ -1121,7 +945,7 @@
         <li><a href="#guide">NDIS Guide</a></li>
         <li><a href="#elig">Eligibility</a></li>
         <li><a href="#referral">Referral Form</a></li>
-        <li><a href="#careers">Careers</a></li>
+        <li><a href="apply.html" target="_blank" rel="noopener">Careers</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
@@ -1166,8 +990,8 @@
   <strong>Hi! How can we help?</strong>
   <a href="tel:0400000001"><svg class="ic"><use href="#ic-phone"/></svg> Call Darwin Office</a>
   <a href="tel:0400000002"><svg class="ic"><use href="#ic-phone"/></svg> Call Perth Office</a>
-  <a href="#referral" onclick="toggleChat()"><svg class="ic"><use href="#ic-clipboard"/></svg> Refer a Participant</a>
-  <a href="#careers" onclick="toggleChat()"><svg class="ic"><use href="#ic-briefcase"/></svg> Apply for a Job</a>
+  <a href="#" onclick="toggleChat();openReferralModal();return false;"><svg class="ic"><use href="#ic-clipboard"/></svg> Refer a Participant</a>
+  <a href="apply.html" target="_blank" rel="noopener" onclick="toggleChat()"><svg class="ic"><use href="#ic-briefcase"/></svg> Apply for a Job</a>
   <a href="mailto:admin@lnhealthcareservices.com.au"><svg class="ic"><use href="#ic-mail"/></svg> Send Email</a>
 </div>
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top"><svg class="ic"><use href="#ic-arrow-up"/></svg></button>

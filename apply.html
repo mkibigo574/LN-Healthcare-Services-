@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#003D52" />
+<title>Apply to LN Health Care Services | Job Application</title>
+<meta name="description" content="Apply to join the LN Health Care Services team — NDIS support workers, coordinators and more across Darwin NT and Perth WA." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="ic-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></symbol>
+    <symbol id="ic-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></symbol>
+    <symbol id="ic-briefcase" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
+    <symbol id="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="ic-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  </defs>
+</svg>
+
+<header class="page-header">
+  <div class="container">
+    <div>
+      <span class="chip"><svg class="ic"><use href="#ic-briefcase"/></svg> Careers</span>
+      <h1>Job Application</h1>
+      <p>Apply to join LN Health Care Services. Complete the form below — all fields marked with <span style="color:#ff9d9d">*</span> are required.</p>
+    </div>
+    <a href="index.html" class="page-back"><svg class="ic"><use href="#ic-arrow-left"/></svg> Back to website</a>
+  </div>
+</header>
+
+<main class="page-main">
+  <div class="container">
+    <div class="form-card">
+      <h3><svg class="ic" style="color:var(--p);font-size:1.15em"><use href="#ic-briefcase"/></svg> Job Application Form</h3>
+      <p class="form-sub">All fields marked with <span style="color:#e53e3e">*</span> are required</p>
+
+      <form id="applicationForm"
+            action="mailto:admin@lnhealthcareservices.com.au"
+            method="POST"
+            enctype="multipart/form-data"
+            onsubmit="return submitApplication(event)"
+            novalidate>
+        <input type="hidden" name="_subject" value="New Job Application — LN Health Care Services" />
+        <input type="hidden" name="_replyto" id="aRefEmail" value="" />
+
+        <!-- Section A: Personal -->
+        <div class="form-sect">
+          <span class="form-sect-lbl">A · Personal Details</span>
+          <div class="form-row">
+            <div class="form-grp"><label>First Name <span class="req">*</span></label><input type="text" name="applicant_first_name" data-req="1" /></div>
+            <div class="form-grp"><label>Last Name <span class="req">*</span></label><input type="text" name="applicant_last_name" data-req="1" /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-grp"><label>Date of Birth <span class="req">*</span></label><input type="date" name="applicant_dob" data-req="1" /></div>
+            <div class="form-grp"><label>Phone Number <span class="req">*</span></label><input type="tel" name="applicant_phone" data-req="1" data-type="phone" placeholder="04XX XXX XXX" /></div>
+          </div>
+          <div class="form-grp"><label>Email Address <span class="req">*</span></label><input type="email" name="applicant_email" id="applicantEmailInput" data-req="1" data-type="email" /></div>
+          <div class="form-grp"><label>Current Address <span class="req">*</span></label><textarea name="applicant_address" rows="2" data-req="1"></textarea></div>
+          <div class="form-grp"><label>Location Applying For <span class="req">*</span></label>
+            <select name="location_applying" data-req="1">
+              <option value="">— Select —</option>
+              <option>Darwin, NT</option>
+              <option>Perth, WA</option>
+              <option>Both</option>
+            </select>
+          </div>
+          <div class="form-grp">
+            <label>Do you have the right to work in Australia? <span class="req">*</span></label>
+            <div class="radio-grp col" data-req-radio="right_to_work">
+              <label class="opt-label"><input type="radio" name="right_to_work" value="Citizen / PR" /><span>Yes — Citizen / Permanent Resident</span></label>
+              <label class="opt-label"><input type="radio" name="right_to_work" value="Work Visa" /><span>Yes — Valid Work Visa</span></label>
+              <label class="opt-label"><input type="radio" name="right_to_work" value="No" /><span>No</span></label>
+            </div>
+          </div>
+          <div class="form-grp"><label>Languages Spoken</label><input type="text" name="languages" placeholder="e.g. English, Vietnamese" /></div>
+        </div>
+
+        <!-- Section B: Role & Availability -->
+        <div class="form-sect">
+          <span class="form-sect-lbl">B · Role &amp; Availability</span>
+          <div class="form-grp"><label>Position Applying For <span class="req">*</span></label>
+            <select name="position" data-req="1">
+              <option value="">— Select —</option>
+              <option>Support Worker</option>
+              <option>Support Coordinator</option>
+              <option>Transport Support Worker</option>
+              <option>SIL Support Worker</option>
+              <option>Other — specify below</option>
+            </select>
+          </div>
+          <div class="form-grp"><label>If "Other", please specify</label><input type="text" name="position_other" /></div>
+          <div class="form-grp">
+            <label>Employment Type Preferred <span class="req">*</span></label>
+            <div class="radio-grp" data-req-radio="employment_type">
+              <label class="opt-label"><input type="radio" name="employment_type" value="Full-time" /><span>Full-time</span></label>
+              <label class="opt-label"><input type="radio" name="employment_type" value="Part-time" /><span>Part-time</span></label>
+              <label class="opt-label"><input type="radio" name="employment_type" value="Casual" /><span>Casual</span></label>
+              <label class="opt-label"><input type="radio" name="employment_type" value="Open to any" /><span>Open to any</span></label>
+            </div>
+          </div>
+          <div class="form-grp"><label>Available Start Date <span class="req">*</span></label><input type="date" name="start_date" data-req="1" /></div>
+          <div class="form-grp">
+            <label>Days Available <span class="req">*</span></label>
+            <div class="check-grp" data-req-check="days_available">
+              <label class="opt-label"><input type="checkbox" name="days_available" value="Monday" /><span>Mon</span></label>
+              <label class="opt-label"><input type="checkbox" name="days_available" value="Tuesday" /><span>Tue</span></label>
+              <label class="opt-label"><input type="checkbox" name="days_available" value="Wednesday" /><span>Wed</span></label>
+              <label class="opt-label"><input type="checkbox" name="days_available" value="Thursday" /><span>Thu</span></label>
+              <label class="opt-label"><input type="checkbox" name="days_available" value="Friday" /><span>Fri</span></label>
+              <label class="opt-label"><input type="checkbox" name="days_available" value="Saturday" /><span>Sat</span></label>
+              <label class="opt-label"><input type="checkbox" name="days_available" value="Sunday" /><span>Sun</span></label>
+            </div>
+          </div>
+          <div class="form-grp">
+            <label>Available for overnight / 24-hour shifts?</label>
+            <div class="radio-grp">
+              <label class="opt-label"><input type="radio" name="overnight" value="Yes" /><span>Yes</span></label>
+              <label class="opt-label"><input type="radio" name="overnight" value="No" /><span>No</span></label>
+              <label class="opt-label"><input type="radio" name="overnight" value="Sometimes" /><span>Sometimes</span></label>
+            </div>
+          </div>
+          <div class="form-grp">
+            <label>Valid Australian driver's licence? <span class="req">*</span></label>
+            <div class="radio-grp" data-req-radio="drivers_licence">
+              <label class="opt-label"><input type="radio" name="drivers_licence" value="Yes" /><span>Yes</span></label>
+              <label class="opt-label"><input type="radio" name="drivers_licence" value="No" /><span>No</span></label>
+            </div>
+          </div>
+          <div class="form-grp">
+            <label>Access to a reliable vehicle?</label>
+            <div class="radio-grp">
+              <label class="opt-label"><input type="radio" name="own_vehicle" value="Yes" /><span>Yes</span></label>
+              <label class="opt-label"><input type="radio" name="own_vehicle" value="No" /><span>No</span></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section C: Qualifications -->
+        <div class="form-sect">
+          <span class="form-sect-lbl">C · Qualifications &amp; Experience</span>
+          <div class="form-grp"><label>Highest Education Level <span class="req">*</span></label>
+            <select name="education" data-req="1">
+              <option value="">— Select —</option>
+              <option>High School</option>
+              <option>Certificate III in Individual Support</option>
+              <option>Certificate IV in Disability</option>
+              <option>Diploma</option>
+              <option>Bachelor's Degree</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-grp"><label>Years of experience in disability/aged care</label>
+            <select name="experience_years">
+              <option value="">— Select —</option>
+              <option>No experience — willing to learn</option>
+              <option>Less than 1 year</option>
+              <option>1–2 years</option>
+              <option>3–5 years</option>
+              <option>5+ years</option>
+            </select>
+          </div>
+          <div class="form-grp">
+            <label>NDIS Worker Screening Check <span class="req">*</span></label>
+            <div class="radio-grp col" data-req-radio="ndis_check">
+              <label class="opt-label"><input type="radio" name="ndis_check" value="Yes — current" /><span>Yes — current</span></label>
+              <label class="opt-label"><input type="radio" name="ndis_check" value="Applied — pending" /><span>Applied — pending</span></label>
+              <label class="opt-label"><input type="radio" name="ndis_check" value="No — understand required" /><span>No — I understand one is required</span></label>
+            </div>
+          </div>
+          <div class="form-grp">
+            <label>Working with Children Check (if applicable)</label>
+            <div class="radio-grp">
+              <label class="opt-label"><input type="radio" name="wwc_check" value="Yes — current" /><span>Yes — current</span></label>
+              <label class="opt-label"><input type="radio" name="wwc_check" value="Not applicable" /><span>Not applicable</span></label>
+              <label class="opt-label"><input type="radio" name="wwc_check" value="No" /><span>No</span></label>
+            </div>
+          </div>
+          <div class="form-grp">
+            <label>First Aid Certificate</label>
+            <div class="radio-grp">
+              <label class="opt-label"><input type="radio" name="first_aid" value="Yes — current" /><span>Yes — current</span></label>
+              <label class="opt-label"><input type="radio" name="first_aid" value="Expired" /><span>Expired</span></label>
+              <label class="opt-label"><input type="radio" name="first_aid" value="No" /><span>No</span></label>
+            </div>
+          </div>
+          <div class="form-grp">
+            <label>COVID-19 vaccination certificate</label>
+            <div class="radio-grp">
+              <label class="opt-label"><input type="radio" name="covid_vac" value="Yes" /><span>Yes</span></label>
+              <label class="opt-label"><input type="radio" name="covid_vac" value="Partial" /><span>Partially</span></label>
+              <label class="opt-label"><input type="radio" name="covid_vac" value="No" /><span>No</span></label>
+              <label class="opt-label"><input type="radio" name="covid_vac" value="Prefer not to say" /><span>Prefer not to say</span></label>
+            </div>
+          </div>
+          <div class="form-grp"><label>Relevant certifications or training</label><textarea name="certifications" rows="3"></textarea></div>
+          <div class="form-grp"><label>Briefly describe your relevant experience <span class="req">*</span></label><textarea name="experience_desc" rows="5" data-req="1" placeholder="Tell us about your experience supporting people with disabilities, elderly care, or community services..."></textarea></div>
+          <div class="form-grp"><label>Why do you want to work at LN Health Care Services? <span class="req">*</span></label><textarea name="motivation" rows="4" data-req="1"></textarea></div>
+          <div class="form-grp">
+            <label>Can you provide 2 professional references if required? <span class="req">*</span></label>
+            <div class="radio-grp" data-req-radio="references_avail">
+              <label class="opt-label"><input type="radio" name="references_avail" value="Yes" /><span>Yes</span></label>
+              <label class="opt-label"><input type="radio" name="references_avail" value="No" /><span>No</span></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section D: Attachments -->
+        <div class="form-sect">
+          <span class="form-sect-lbl">D · Attachments</span>
+          <div class="form-grp"><label>Upload Resume / CV <span class="req">*</span></label><input type="file" name="resume" data-req="1" data-file="1" accept=".pdf,.doc,.docx" /></div>
+          <div class="form-grp"><label>Upload Cover Letter (optional)</label><input type="file" name="cover_letter" data-file="1" accept=".pdf,.doc,.docx" /></div>
+          <p class="privacy-stmt">Max file size: 5MB each. Accepted formats: PDF, DOC, DOCX</p>
+        </div>
+
+        <!-- Section E: Declaration -->
+        <div class="form-sect">
+          <span class="form-sect-lbl">E · Declaration</span>
+          <div class="consent-grp">
+            <label class="consent"><input type="checkbox" name="decl_truthful" data-req="1" /><span>I confirm that all information provided in this application is true and accurate to the best of my knowledge. <span class="req">*</span></span></label>
+            <label class="consent"><input type="checkbox" name="decl_rejection" data-req="1" /><span>I understand that providing false information may result in my application being rejected. <span class="req">*</span></span></label>
+            <label class="consent"><input type="checkbox" name="decl_retain" /><span>I consent to LN Health Care Services retaining my details for future vacancies if unsuccessful.</span></label>
+          </div>
+        </div>
+
+        <button type="submit" class="form-submit">Submit Application <svg class="ic"><use href="#ic-arrow-right"/></svg></button>
+      </form>
+
+      <div class="success-msg" id="applicationSuccess" role="status" aria-live="polite">
+        <div class="success-ic"><svg class="ic"><use href="#ic-check"/></svg></div>
+        <h4>Application Submitted!</h4>
+        <p>Thank you for applying to LN Health Care Services. We will review your application and reach out within 5–7 business days. You can close this tab.</p>
+        <span class="ref" id="appRef">Application Reference: LN-APP-000000</span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="page-foot">
+  <div class="container">© 2025 LN Health Care Services. NDIS Registered Provider. <a href="index.html">Back to homepage</a></div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>

@@ -3,11 +3,13 @@
 ========================================================= */
 const nav = document.getElementById('nav');
 const scrollTopBtn = document.getElementById('scrollTop');
-window.addEventListener('scroll', () => {
-  const y = window.scrollY;
-  nav.classList.toggle('sc', y > 50);
-  scrollTopBtn.classList.toggle('show', y > 400);
-});
+if (nav || scrollTopBtn) {
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (nav) nav.classList.toggle('sc', y > 50);
+    if (scrollTopBtn) scrollTopBtn.classList.toggle('show', y > 400);
+  });
+}
 
 /* =========================================================
    2. REVEAL ANIMATIONS
@@ -121,17 +123,46 @@ document.querySelectorAll('.acc-head').forEach(h => {
 const hamb = document.getElementById('hamb');
 const mobNav = document.getElementById('mobNav');
 const mobCl = document.getElementById('mobCl');
-hamb.addEventListener('click', () => {
-  mobNav.classList.add('open');
-  hamb.setAttribute('aria-expanded','true');
-  document.body.style.overflow = 'hidden';
-});
+if (hamb && mobNav && mobCl) {
+  hamb.addEventListener('click', () => {
+    mobNav.classList.add('open');
+    hamb.setAttribute('aria-expanded','true');
+    document.body.style.overflow = 'hidden';
+  });
+  mobCl.addEventListener('click', closeMob);
+}
 function closeMob() {
+  if (!mobNav || !hamb) return;
   mobNav.classList.remove('open');
   hamb.setAttribute('aria-expanded','false');
   document.body.style.overflow = '';
 }
-mobCl.addEventListener('click', closeMob);
+
+/* =========================================================
+   8b. REFERRAL MODAL
+========================================================= */
+function openReferralModal() {
+  const m = document.getElementById('referralModal');
+  if (!m) return;
+  m.classList.add('open');
+  document.body.classList.add('modal-open');
+  // focus the first input for accessibility
+  setTimeout(() => {
+    const first = m.querySelector('input, select, textarea, button');
+    if (first) first.focus();
+  }, 50);
+}
+function closeReferralModal() {
+  const m = document.getElementById('referralModal');
+  if (!m) return;
+  m.classList.remove('open');
+  document.body.classList.remove('modal-open');
+}
+// click-outside to close
+document.addEventListener('click', (e) => {
+  const m = document.getElementById('referralModal');
+  if (m && m.classList.contains('open') && e.target === m) closeReferralModal();
+});
 
 /* =========================================================
    9. FORM VALIDATION & SUBMISSION
@@ -340,7 +371,8 @@ function showSuccess(which) {
    10. CHAT BUBBLE
 ========================================================= */
 function toggleChat() {
-  document.getElementById('chatPop').classList.toggle('show');
+  const pop = document.getElementById('chatPop');
+  if (pop) pop.classList.toggle('show');
 }
 document.addEventListener('click', (e) => {
   const pop = document.getElementById('chatPop');
@@ -364,8 +396,11 @@ document.querySelectorAll('[tabindex="0"]').forEach(el => {
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
-    if (mobNav.classList.contains('open')) closeMob();
-    document.getElementById('chatPop').classList.remove('show');
+    if (mobNav && mobNav.classList.contains('open')) closeMob();
+    const chatPop = document.getElementById('chatPop');
+    if (chatPop) chatPop.classList.remove('show');
+    const refModal = document.getElementById('referralModal');
+    if (refModal && refModal.classList.contains('open')) closeReferralModal();
   }
 });
 
