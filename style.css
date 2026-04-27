@@ -193,15 +193,16 @@ section{padding:100px 0;position:relative}
 }
 .nav.sc{box-shadow:0 8px 32px rgba(0,0,0,.08);background:rgba(247,252,253,.98)}
 .nav .container{display:flex;justify-content:space-between;align-items:center;padding:18px 32px}
-.logo{display:flex;align-items:center;gap:12px;font-family:'Syne',sans-serif}
-.logo-mk{
-  width:46px;height:46px;background:linear-gradient(135deg,var(--g) 0%, var(--g2) 100%);color:var(--a);
-  border-radius:13px;display:flex;align-items:center;justify-content:center;
-  font-weight:800;font-size:1.05rem;letter-spacing:-.02em;
-  box-shadow:0 4px 14px rgba(0,61,82,.18), inset 0 1px 0 rgba(255,255,255,.08);
+.logo{display:inline-flex;align-items:center;gap:10px;font-family:'Syne',sans-serif}
+.logo img{
+  height:52px;width:auto;display:block;
+  border-radius:10px;background:#fff;
+  transition:transform .35s var(--ease);
 }
-.logo-tx{font-weight:800;color:var(--g);font-size:1.05rem;line-height:1.1}
-.logo-tx small{display:block;font-weight:500;color:var(--mt);font-size:.7rem;font-family:'Instrument Sans',sans-serif;letter-spacing:.04em}
+.logo:hover img{transform:scale(1.04)}
+/* on dark surfaces (mobile nav, footer) keep the white bg as an intentional badge */
+.mob-nav-top .logo img,
+footer .logo img{box-shadow:0 4px 14px rgba(0,0,0,.25)}
 
 .nav-l{display:flex;gap:6px;align-items:center}
 .nav-l a, .nav-l .nav-li > button{
@@ -240,8 +241,6 @@ section{padding:100px 0;position:relative}
 }
 .mob-nav.open{transform:translateX(0)}
 .mob-nav-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px}
-.mob-nav-top .logo-tx{color:var(--a)}
-.mob-nav-top .logo-tx small{color:rgba(255,255,255,.6)}
 .mob-cl{
   width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,.12);
   color:#fff;font-size:22px;display:flex;align-items:center;justify-content:center;
@@ -765,8 +764,6 @@ footer .container{display:grid;grid-template-columns:2fr 1fr 1fr 1.2fr;gap:48px;
   font-family:'Syne',sans-serif;color:var(--a);font-size:1.05rem;
   margin-bottom:20px;font-weight:700;letter-spacing:.02em;
 }
-.fcol-1 .logo-tx{color:#fff}
-.fcol-1 .logo-tx small{color:rgba(255,255,255,.55)}
 .fcol-1 p{margin:18px 0;font-size:.92rem;line-height:1.65;color:rgba(255,255,255,.65)}
 .socials{display:flex;gap:10px}
 .socials a{
