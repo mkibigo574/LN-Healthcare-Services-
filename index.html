@@ -210,6 +210,13 @@
         </div>
       </div>
       <a href="#guide">NDIS Guide</a>
+      <div class="nav-li">
+        <button aria-haspopup="true" aria-expanded="false">NDIS <svg class="ic" style="width:.85em;height:.85em"><use href="#ic-chevron-down"/></svg></button>
+        <div class="dd" role="menu">
+          <a href="https://www.ndis.gov.au/" target="_blank" rel="noopener noreferrer"><svg class="ic"><use href="#ic-globe"/></svg> National Disability Insurance Scheme</a>
+          <a href="https://www.ndiscommission.gov.au/" target="_blank" rel="noopener noreferrer"><svg class="ic"><use href="#ic-shield-check"/></svg> NDIS Commission</a>
+        </div>
+      </div>
       <a href="#elig">Eligibility</a>
       <a href="#referral">Referral</a>
       <a href="apply.html" target="_blank" rel="noopener">Careers</a>
@@ -234,6 +241,8 @@
   <a href="#about" onclick="closeMob()">About</a>
   <a href="#services" onclick="closeMob()">Services</a>
   <a href="#guide" onclick="closeMob()">NDIS Guide</a>
+  <a href="https://www.ndis.gov.au/" target="_blank" rel="noopener noreferrer" onclick="closeMob()">NDIS (ndis.gov.au)</a>
+  <a href="https://www.ndiscommission.gov.au/" target="_blank" rel="noopener noreferrer" onclick="closeMob()">NDIS Commission (ndiscommission.gov.au)</a>
   <a href="#elig" onclick="closeMob()">Eligibility Check</a>
   <a href="#referral" onclick="closeMob()">Refer a Participant</a>
   <a href="apply.html" target="_blank" rel="noopener" onclick="closeMob()">Careers</a>
@@ -268,7 +277,7 @@
           <div class="av">M</div>
           <div class="av">+</div>
         </div>
-        <div class="trust-tx">500+ Participants Supported<small>Across NT &amp; WA</small></div>
+        <div class="trust-tx">Trusted NDIS Support<small>Across NT &amp; WA</small></div>
       </div>
     </div>
     <div class="hero-r">
@@ -279,24 +288,8 @@
         <div class="fc-ic"><svg class="ic"><use href="#ic-heart"/></svg></div>
         <div><strong>Person-Centred Care</strong><small>Your goals, your choices, your life</small></div>
       </div>
-      <div class="hero-fcard fc-2">
-        <span class="num">500+</span>
-        <small>Happy Participants</small>
-      </div>
       <div class="hero-fcard fc-3"><svg class="ic"><use href="#ic-medal"/></svg> NDIS Registered</div>
     </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     5. STATISTICS STRIP
-============================================================ -->
-<section class="stats" aria-label="Key statistics">
-  <div class="container">
-    <div class="stat-c reveal"><span class="n" data-target="500" data-suffix="+">0</span><span class="l">Participants Supported</span></div>
-    <div class="stat-c reveal"><span class="n" data-target="8">0</span><span class="l">NDIS Services Offered</span></div>
-    <div class="stat-c reveal"><span class="n" data-target="46" data-prefix="$" data-suffix="B+">0</span><span class="l">National NDIS Investment 2026</span></div>
-    <div class="stat-c reveal"><span class="n" data-target="761" data-suffix="K+">0</span><span class="l">Active NDIS Participants Nationally</span></div>
   </div>
 </section>
 
@@ -517,7 +510,7 @@
         <div class="svc-body"><div class="svc-ic"><svg class="ic"><use href="#ic-user-care"/></svg></div><h4>Daily Personal Activities</h4><p>Personalised support with everyday routines — bathing, dressing, meals — for a comfortable, independent life.</p><a href="#referral" class="svc-link">Learn More <svg class="ic"><use href="#ic-arrow-right"/></svg></a></div>
       </div>
       <div class="svc-card reveal" data-cat="daily">
-        <div class="img"><span class="tag">Core</span><img src="https://images.unsplash.com/photo-1486006920555-c77dcf18193c?w=600&q=80" alt="Transport support" loading="lazy" /></div>
+        <div class="img"><span class="tag">Core</span><img src="wheelchair-vehicle.jpg" alt="Wheelchair accessible vehicle for participant transport" loading="lazy" /></div>
         <div class="svc-body"><div class="svc-ic"><svg class="ic"><use href="#ic-car"/></svg></div><h4>Transport Assistance</h4><p>Reliable transport to appointments, social activities, and community events. Never miss what matters.</p><a href="#referral" class="svc-link">Learn More <svg class="ic"><use href="#ic-arrow-right"/></svg></a></div>
       </div>
       <div class="svc-card reveal" data-cat="daily">
@@ -890,9 +883,20 @@
       <p>LN Health Care Services is fully audited, registered, and compliant with the NDIS Quality and Safeguards Commission. Every participant we support benefits from the safety, quality assurance, and accountability that registration delivers.</p>
     </div>
     <div class="ndis-r reveal">
-      <div class="ndis-badge">
-        <div class="ndis-badge-ic"><svg class="ic"><use href="#ic-medal"/></svg></div>
-        <div><strong>NDIS Registered</strong><span>Provider Number: XXXXXXXXX</span></div>
+      <div class="ndis-badge" role="img" aria-label="Registered NDIS Provider">
+        <div class="ndis-badge-l">
+          <div class="ndis-l-top">
+            <span class="ndis-i">I</span>
+            <svg class="ndis-heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <span class="ndis-word">ndis</span>
+        </div>
+        <div class="ndis-badge-divider" aria-hidden="true"></div>
+        <div class="ndis-badge-r">
+          <span>REGISTERED</span>
+          <span>NDIS</span>
+          <span>PROVIDER</span>
+        </div>
       </div>
       <button type="button" class="btn btn-p" onclick="openReferralModal()">Get Started Today <svg class="ic"><use href="#ic-arrow-right"/></svg></button>
     </div>

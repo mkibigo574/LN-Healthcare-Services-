@@ -312,20 +312,6 @@ footer .logo img{box-shadow:0 4px 14px rgba(0,0,0,.25)}
 }
 
 /* =========================================================
-   STAT STRIP
-========================================================= */
-.stats{background:var(--g);padding:80px 0;color:#fff}
-.stats .container{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
-.stat-c{padding:0 30px;text-align:center;border-right:1px solid rgba(255,255,255,.12)}
-.stat-c:last-child{border-right:none}
-.stat-c .n{
-  font-family:'Syne',sans-serif;font-weight:800;
-  font-size:clamp(2.5rem,4vw,3.6rem);color:var(--a);line-height:1;
-  display:block;margin-bottom:10px;
-}
-.stat-c .l{font-size:.9rem;color:rgba(255,255,255,.75);font-weight:500}
-
-/* =========================================================
    ABOUT
 ========================================================= */
 .about .container{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
@@ -738,12 +724,18 @@ footer .logo img{box-shadow:0 4px 14px rgba(0,0,0,.25)}
 .ndis-banner p{color:var(--g);font-size:1.02rem;line-height:1.65;max-width:640px}
 .ndis-r{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
 .ndis-badge{
-  display:flex;align-items:center;gap:14px;background:var(--g);color:var(--a);
-  padding:18px 24px;border-radius:16px;
+  display:inline-flex;align-items:center;gap:18px;background:var(--g);color:#fff;
+  padding:20px 26px;border-radius:18px;box-shadow:var(--sh2);
 }
-.ndis-badge-ic{width:46px;height:46px;border-radius:12px;background:rgba(244,162,39,.18);color:var(--a);display:flex;align-items:center;justify-content:center;font-size:24px}
-.ndis-badge strong{font-family:'Syne',sans-serif;font-size:1.05rem;display:block}
-.ndis-badge span{color:rgba(255,255,255,.75);font-size:.82rem}
+.ndis-badge-l{display:flex;flex-direction:column;align-items:center;gap:2px;font-family:'Syne',sans-serif;line-height:1}
+.ndis-l-top{display:flex;align-items:center;gap:6px}
+.ndis-badge-l .ndis-i{font-size:1.7rem;font-weight:800;color:#fff}
+.ndis-badge-l .ndis-heart{width:30px;height:30px;fill:var(--a)}
+.ndis-badge-l .ndis-word{font-size:1.85rem;font-weight:800;color:#fff;letter-spacing:-.02em}
+.ndis-badge-divider{width:1px;align-self:stretch;background:rgba(255,255,255,.28)}
+.ndis-badge-r{display:flex;flex-direction:column;line-height:1.05;font-family:'Syne',sans-serif}
+.ndis-badge-r span{font-size:.95rem;font-weight:800;letter-spacing:.04em;color:#fff}
+.ndis-badge-r span:nth-child(2){color:var(--a)}
 
 /* =========================================================
    ACKNOWLEDGEMENT OF COUNTRY
@@ -947,10 +939,6 @@ body.modal-open{overflow:hidden}
   }
   .svc-grid{grid-template-columns:repeat(2,1fr)}
   .testi-grid{grid-template-columns:1fr;gap:18px}
-  .stats .container{grid-template-columns:repeat(2,1fr);gap:30px 0}
-  .stat-c{padding:20px 30px;border-right:none;border-bottom:1px solid rgba(255,255,255,.12)}
-  .stat-c:nth-last-child(-n+2){border-bottom:none}
-  .stat-c:nth-child(odd){border-right:1px solid rgba(255,255,255,.12)}
   .nav-l{display:none}
   .hamb{display:flex}
   .hero-img-wrap img{height:480px}
@@ -974,9 +962,6 @@ body.modal-open{overflow:hidden}
   .form-card{padding:28px 22px}
   .form-row{grid-template-columns:1fr}
   .svc-grid{grid-template-columns:1fr}
-  .stats .container{grid-template-columns:1fr}
-  .stat-c{border-right:none !important}
-  .stat-c:not(:last-child){border-bottom:1px solid rgba(255,255,255,.12)}
   .why-grid{grid-template-columns:1fr}
   .about-img .accent-img{width:160px;height:160px;bottom:-20px;right:-10px}
   .why-quote{position:static;margin-top:20px;max-width:100%}
