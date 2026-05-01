@@ -669,19 +669,6 @@ footer .logo img{box-shadow:0 4px 14px rgba(0,0,0,.25)}
   border-radius:999px;font-weight:700;font-size:.88rem;letter-spacing:.04em;
 }
 
-/* Job-specific styling */
-.job-roles{margin-top:24px}
-.job-roles .role{
-  display:flex;gap:12px;align-items:center;padding:14px 18px;background:#fff;
-  border-radius:12px;margin-bottom:8px;border:1px solid var(--cd);
-}
-.role-ic{
-  width:36px;height:36px;border-radius:10px;background:var(--a3);color:var(--g);
-  display:inline-flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;
-}
-.job-roles .role span{color:var(--g);font-weight:600;font-size:.92rem}
-.job-note{font-size:.86rem;color:var(--mt);font-style:italic;margin-top:14px}
-
 /* =========================================================
    FAQ
 ========================================================= */
